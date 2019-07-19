@@ -9,13 +9,13 @@ import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.databinding.CashDayBinding
 import com.w.xiaolanlaia.base.BaseMVVMFragment
 
-class CashDayFragment : BaseMVVMFragment<CashDayBinding, CashDayViewModel>(){
+class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
     override fun initContentViewID(): Int = R.layout.cash_day
 
-    override fun initViewModel(): CashDayViewModel = ViewModelProviders.of(activity as FragmentActivity, CashDayVMFactory(
-        CashDayRepository()
+    override fun initViewModel(): DayViewModel = ViewModelProviders.of(activity as FragmentActivity, DayVMFactory(
+        DayRepository()
     )
-    ).get(CashDayViewModel::class.java)
+    ).get(DayViewModel::class.java)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

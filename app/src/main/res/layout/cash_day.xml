@@ -3,7 +3,7 @@
     <data>
 
         <variable name="vm"
-                  type="com.w.xiaolanlaia.main.day.CashDayViewModel"/>
+                  type="com.w.xiaolanlaia.main.day.DayViewModel"/>
     </data>
     <LinearLayout
             android:orientation="vertical"
@@ -11,6 +11,7 @@
             android:layout_height="match_parent">
         <GridLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
                     android:columnCount="2"
                     android:rowCount="2">
             <LinearLayout

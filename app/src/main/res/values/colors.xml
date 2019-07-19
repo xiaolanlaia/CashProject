@@ -12,4 +12,6 @@
     <color name="common_blue">#007AFF</color>
     <color name="common_red">#D81B60</color>
 
+    <color name="bottom_grey">#CCCCCC</color>
+
 </resources>

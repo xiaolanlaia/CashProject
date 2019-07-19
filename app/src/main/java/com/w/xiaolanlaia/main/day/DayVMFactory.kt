@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 @Suppress("UNCHECKED_CAST")
-class CashDayVMFactory (private val repository: CashDayRepository) : ViewModelProvider.NewInstanceFactory(){
+class DayVMFactory (private val repository: DayRepository) : ViewModelProvider.NewInstanceFactory(){
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CashDayViewModel(repository) as T
+        return DayViewModel(repository) as T
     }
 }
