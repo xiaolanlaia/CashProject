@@ -1,0 +1,33 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!--day-->
+
+    <style name="cash_day_grey">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/common_grey</item>
+    </style>
+
+    <style name="cash_day_black">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/common_black</item>
+    </style>
+
+    <style name="cash_day_red">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/common_red</item>
+    </style>
+    <style name="cash_day_blue">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/common_blue</item>
+    </style>
+
+</resources>
