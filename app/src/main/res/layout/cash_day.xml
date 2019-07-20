@@ -9,7 +9,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/bottom_grey"
+            android:background="@color/background_grey"
     >
         <GridLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -110,12 +110,14 @@
                 app:tabSelectedTextColor="#007AFF"
                 app:tabIndicatorColor="#007AFF"
                 app:tabIndicatorFullWidth="false"
+                android:layout_marginTop="10dp"
                 android:background="@color/common_white"
         />
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/day_view_page"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
+
 
         >
 

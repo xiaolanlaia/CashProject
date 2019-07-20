@@ -14,5 +14,6 @@
     <color name="common_red">#D81B60</color>
 
     <color name="bottom_grey">#CCCCCC</color>
+    <color name="background_grey">#F6F6F6</color>
 
 </resources>
