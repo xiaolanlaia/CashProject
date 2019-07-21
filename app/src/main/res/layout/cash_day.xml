@@ -30,13 +30,14 @@
 
             >
                 <TextView
-                        android:text="收支详情"
+                        android:text="收支统计"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         style="@style/cash_day_grey"
                 />
                 <TextView
+                        android:id="@+id/accountant_text"
                         android:text="￥---"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -63,6 +64,7 @@
                         style="@style/cash_day_grey"
                 />
                 <TextView
+                        android:id="@+id/pay_text"
                         android:text="￥----"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -91,6 +93,7 @@
                         style="@style/cash_day_grey"
                 />
                 <TextView
+                        android:id="@+id/income_text"
                         android:text="￥----"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -113,16 +116,21 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/common_white"
         />
+
+        <com.baoyz.widget.PullRefreshLayout
+                android:id="@+id/pull_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
+
+
         <androidx.viewpager.widget.ViewPager
                 android:id="@+id/day_view_page"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+        />
 
-
-        >
-
-        </androidx.viewpager.widget.ViewPager>
-
+        </com.baoyz.widget.PullRefreshLayout>
 
     </LinearLayout>
 </layout>

@@ -1,12 +1,17 @@
 package com.w.xiaolanlaia.main.day
 
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.baoyz.widget.PullRefreshLayout
 
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.databinding.CashDayBinding
@@ -20,12 +25,28 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
     override fun initViewModel(): DayViewModel =
         ViewModelProviders.of(this, DayVMFactory(DayRepository())).get(DayViewModel::class.java)
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         day_view_page.adapter = DayPageAdapter((context as FragmentActivity).supportFragmentManager)
         day_tab_layout.setupWithViewPager(day_view_page)
         day_view_page.currentItem = 0
+
+        vm.pay.observe(this, Observer {
+            pay_text.text = "￥${it}"
+        })
+
+        bindViews.pullRefresh.setRefreshStyle(PullRefreshLayout.STYLE_RING)
+        bindViews.pullRefresh.setOnRefreshListener {
+
+            view.postDelayed({
+                
+                bindViews.pullRefresh.setRefreshing(false)
+
+            },1500)
+        }
+
 
 
     }

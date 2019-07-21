@@ -23,15 +23,15 @@ import com.w.xiaolanlaia.R
 abstract class BaseMVVMFragment<VDB : ViewDataBinding, VM : ViewModel> : Fragment(),
     CommonMethod {
 
-    lateinit var bindView : VDB
+    lateinit var bindViews : VDB
     lateinit var vm : VM
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(initContentViewID(),container,false)
-        bindView = DataBindingUtil.bind(v)!!
+        bindViews = DataBindingUtil.bind(v)!!
         vm = initViewModel()
-        bindView.lifecycleOwner = this
+        bindViews.lifecycleOwner = this
         return  v
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

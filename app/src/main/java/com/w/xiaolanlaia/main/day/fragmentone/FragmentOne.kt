@@ -58,7 +58,7 @@ class FragmentOne : BaseMVVMFragment<FragmentOneBinding,DayViewModel>(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var recyclerAdapter = FragmentOneAdapter()
-        bindView.fragmentOneRecycler.adapter = recyclerAdapter
+        bindViews.fragmentOneRecycler.adapter = recyclerAdapter
 
 
         vm.list.observe(this, Observer {

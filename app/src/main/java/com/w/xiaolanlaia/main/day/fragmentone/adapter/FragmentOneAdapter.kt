@@ -1,5 +1,6 @@
 package com.w.xiaolanlaia.main.day.fragmentone.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -62,14 +63,24 @@ class FragmentOneAdapter : RecyclerView.Adapter<FragmentOneAdapter.FragmentOneVi
 
     override fun getItemCount(): Int = list.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: FragmentOneViewHelper, position: Int) {
 
-        holder.number.text = list[position].number
-        holder.type.text = list[position].type.toString()
-        holder.project.text = list[position].project
-        holder.money.text = list[position].money
-        holder.time.text = list[position].time.toString()
-        holder.location.text = list[position].location
+        holder.number.text = "编号：${list[position].number}"
+
+        if (list[position].type == 0){
+            holder.type.text = "支出"
+            holder.type.setBackgroundResource(R.drawable.blue_corner_background)
+
+        }else if(list[position].type == 1){
+            holder.type.text = "收入"
+            holder.type.setBackgroundResource(R.drawable.red_corner_background)
+        }
+
+        holder.project.text = "项目：${list[position].project}"
+        holder.money.text = "金额：${list[position].money}"
+        holder.time.text = "时间：${list[position].time}"
+        holder.location.text = "位置：${list[position].location}"
     }
 
 

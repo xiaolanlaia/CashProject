@@ -25,6 +25,6 @@ class WeekFragment : BaseMVVMFragment<CashWeekBinding,WeekViewModel>(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bindView.vm = vm
+        bindViews.vm = vm
     }
 }
