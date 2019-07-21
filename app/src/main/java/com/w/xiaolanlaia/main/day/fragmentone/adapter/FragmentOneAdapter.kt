@@ -23,8 +23,31 @@ class FragmentOneAdapter : RecyclerView.Adapter<FragmentOneAdapter.FragmentOneVi
     private var list = mutableListOf<FragmentOneBean>()
     lateinit var context: Context
 
-    fun updataList(list : MutableList<FragmentOneBean>){
-        this.list = list
+    fun updateList(type : Int, list : MutableList<FragmentOneBean>){
+
+        if (type == 0){
+            val li =list.filter {
+
+                it.type == 0
+
+            }
+
+            li.forEachIndexed { _, fragmentOneBean ->
+                this.list.add(fragmentOneBean)
+            }
+        }else if (type == 1){
+            val li = list.filter {
+                it.type == 1
+            }
+
+            li.forEachIndexed { _, fragmentOneBean ->
+                this.list.add(fragmentOneBean)
+            }
+
+        }else{
+            this.list = list
+        }
+
         notifyDataSetChanged()
 
 
@@ -42,7 +65,7 @@ class FragmentOneAdapter : RecyclerView.Adapter<FragmentOneAdapter.FragmentOneVi
     override fun onBindViewHolder(holder: FragmentOneViewHelper, position: Int) {
 
         holder.number.text = list[position].number
-        holder.type.text = list[position].type
+        holder.type.text = list[position].type.toString()
         holder.project.text = list[position].project
         holder.money.text = list[position].money
         holder.time.text = list[position].time.toString()

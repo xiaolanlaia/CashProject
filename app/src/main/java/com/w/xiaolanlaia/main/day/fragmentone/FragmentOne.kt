@@ -29,6 +29,8 @@ class FragmentOne : BaseMVVMFragment<FragmentOneBinding,DayViewModel>(){
 
     companion object{
         const val TYPE_ONE = 0
+        const val TYPE_TWO = 1
+        const val TYPE_THREE = 2
 
 
         fun newInstance(type : Int) : FragmentOne{
@@ -49,11 +51,10 @@ class FragmentOne : BaseMVVMFragment<FragmentOneBinding,DayViewModel>(){
         type = arguments!!.getInt("type",1)
 
         return ViewModelProviders.of(activity!!,DayVMFactory(DayRepository())).get(
-            "Day${type}",DayViewModel::class.java
+            "Day$type",DayViewModel::class.java
         )
     }
 
-    lateinit var list : MutableList<FragmentOneBean>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var recyclerAdapter = FragmentOneAdapter()
@@ -61,7 +62,7 @@ class FragmentOne : BaseMVVMFragment<FragmentOneBinding,DayViewModel>(){
 
 
         vm.list.observe(this, Observer {
-            recyclerAdapter.updataList(it as  MutableList<FragmentOneBean>)
+            recyclerAdapter.updateList(type,it as  MutableList<FragmentOneBean>)
 
         })
 

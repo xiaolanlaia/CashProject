@@ -30,14 +30,14 @@
 
             >
                 <TextView
-                        android:text="借贷详情1"
+                        android:text="收支详情"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         style="@style/cash_day_grey"
                 />
                 <TextView
-                        android:text="借贷详情2"
+                        android:text="￥---"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -56,14 +56,14 @@
                     android:layout_marginBottom="20dp"
             >
                 <TextView
-                        android:text="借贷详情1"
+                        android:text="支出"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         style="@style/cash_day_grey"
                 />
                 <TextView
-                        android:text="借贷详情2"
+                        android:text="￥----"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -84,14 +84,14 @@
 
             >
                 <TextView
-                        android:text="借贷详情1"
+                        android:text="收入"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         style="@style/cash_day_grey"
                 />
                 <TextView
-                        android:text="借贷详情2"
+                        android:text="￥----"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

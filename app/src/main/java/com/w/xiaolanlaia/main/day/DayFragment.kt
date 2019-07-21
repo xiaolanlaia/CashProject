@@ -37,12 +37,12 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
 
         init {
 
-            titles.add("碎片1")
-            titles.add("碎片2")
-            titles.add("碎片2")
+            titles.add("支出")
+            titles.add("收入")
+            titles.add("全部")
             fragments.add(FragmentOne.newInstance(FragmentOne.TYPE_ONE))
-            fragments.add(FragmentOne.newInstance(FragmentOne.TYPE_ONE))
-            fragments.add(FragmentOne.newInstance(FragmentOne.TYPE_ONE))
+            fragments.add(FragmentOne.newInstance(FragmentOne.TYPE_TWO))
+            fragments.add(FragmentOne.newInstance(FragmentOne.TYPE_THREE))
         }
 
         override fun getItem(position: Int): Fragment = fragments[position]

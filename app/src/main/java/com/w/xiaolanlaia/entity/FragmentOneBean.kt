@@ -10,7 +10,7 @@ package com.w.xiaolanlaia.entity
 
 class FragmentOneBean {
     var number : String? = null
-    var type : String? = null
+    var type : Int? = 0
     var project : String? = null
     var money : String? = null
     var time : Long? = 0L
