@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AppToolbar">
+
+        <attr name="toolbar_style" format="integer">
+            <enum name="day" value="0"/>
+        </attr>
+        
+        <attr name="toolbar_title" format="string"/>
+    </declare-styleable>
+</resources>

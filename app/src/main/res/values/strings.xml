@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">CashProject</string>
+    <string name="app_name">晓懒来啊</string>
+
+
+    <!--Toolbar-->
+    <string name="toolbar_text_size">18sp</string>
 </resources>

@@ -9,8 +9,14 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background_grey"
-    >
+            android:background="@color/background_grey">
+        <com.w.xiaolanlaia.util.widget.AppToolbar
+                android:id="@+id/day_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:toolbar_style="day"
+        />
+
         <GridLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:columnCount="2"

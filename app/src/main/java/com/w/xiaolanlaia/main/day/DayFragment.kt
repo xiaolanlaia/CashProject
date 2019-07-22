@@ -1,8 +1,8 @@
 package com.w.xiaolanlaia.main.day
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -25,6 +25,7 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
     override fun initViewModel(): DayViewModel =
         ViewModelProviders.of(this, DayVMFactory(DayRepository())).get(DayViewModel::class.java)
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,14 +35,14 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
         day_view_page.currentItem = 0
 
         vm.pay.observe(this, Observer {
-            pay_text.text = "￥${it}"
+            pay_text.text = "￥$it"
         })
 
         bindViews.pullRefresh.setRefreshStyle(PullRefreshLayout.STYLE_RING)
         bindViews.pullRefresh.setOnRefreshListener {
 
             view.postDelayed({
-                
+
                 bindViews.pullRefresh.setRefreshing(false)
 
             },1500)
@@ -49,6 +50,11 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
 
 
 
+    }
+
+    override fun fitTransparentStatus() {
+        super.fitTransparentStatus()
+//        day_toolbar.fitTransparentStatus()
     }
 
     class DayPageAdapter(fm : FragmentManager?) : FragmentPagerAdapter(fm){

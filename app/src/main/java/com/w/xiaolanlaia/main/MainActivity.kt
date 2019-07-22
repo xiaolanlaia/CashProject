@@ -30,6 +30,8 @@ class MainActivity : BaseActivity() {
         nav_view.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         nav_view.selectedItemId = 0
 
+
+
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+    <View
+            android:id="@+id/toolbar_status_height"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+    />
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+    >
+        <TextView
+                android:id="@+id/toolbar_title"
+                android:text="标题"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@string/toolbar_text_size"
+                android:textColor="@color/common_black"
+        />
+
+        <ImageView
+                android:id="@+id/toolbar_back"
+                style="@style/toolbar_style"
+                android:src="@mipmap/nav_back"
+                android:layout_alignParentStart="true"
+
+        />
+        <ImageView
+                android:id="@+id/transfer"
+                android:src="@mipmap/transfer_view"
+                style="@style/toolbar_style"
+                android:layout_alignParentEnd="true"
+
+        />
+
+    </RelativeLayout>
+</LinearLayout>
