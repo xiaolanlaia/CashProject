@@ -36,9 +36,9 @@ class AppToolbar : RelativeLayout{
         view = LayoutInflater.from(context).inflate(R.layout.include_toolbar,this)
 
         status = view.findViewById(R.id.toolbar_status_height)
-        title = view.findViewById(R.id.title)
+        title = view.findViewById(R.id.toolbar_title)
         back = view.findViewById(R.id.toolbar_back)
-        transfer = view.findViewById(R.id.transfer)
+        transfer = view.findViewById(R.id.toolbar_transfer)
 
         //获取自定义属性
         var typeArray = context.obtainStyledAttributes(attrs,R.styleable.AppToolbar)
