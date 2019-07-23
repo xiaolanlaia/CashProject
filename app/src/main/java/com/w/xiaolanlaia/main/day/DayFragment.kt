@@ -54,7 +54,7 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
 
     override fun fitTransparentStatus() {
         super.fitTransparentStatus()
-//        day_toolbar.fitTransparentStatus()
+        day_toolbar.fitTransparentStatus()
     }
 
     class DayPageAdapter(fm : FragmentManager?) : FragmentPagerAdapter(fm){

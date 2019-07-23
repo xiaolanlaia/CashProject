@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.w.xiaolanlaia.R
+import com.w.xiaolanlaia.util.SizeUtil
 
 /**
  *  @author  xiaolanlaia
@@ -41,12 +42,12 @@ class AppToolbar : RelativeLayout{
         transfer = view.findViewById(R.id.toolbar_transfer)
 
         //获取自定义属性
-        var typeArray = context.obtainStyledAttributes(attrs,R.styleable.AppToolbar)
-        var titleText = typeArray.getString(R.styleable.AppToolbar_toolbar_title)
+        val typeArray = context.obtainStyledAttributes(attrs,R.styleable.AppToolbar)
+        val titleText = typeArray.getString(R.styleable.AppToolbar_toolbar_title)
 
         title.text = titleText
 
-        var style = typeArray.getInt(R.styleable.AppToolbar_toolbar_style,0)
+        val style = typeArray.getInt(R.styleable.AppToolbar_toolbar_style,0)
 
         when(style){
 
@@ -58,11 +59,23 @@ class AppToolbar : RelativeLayout{
 
     }
 
-    fun dayToolbar(){
+    private fun dayToolbar(){
 
         back.visibility = View.VISIBLE
         transfer.visibility = View.VISIBLE
         title.visibility = View.VISIBLE
+    }
+
+    fun fitTransparentStatus(){
+
+        val statusHeight = SizeUtil.getStatusHeight(context)
+        val statusLayoutParams = status.layoutParams
+        statusLayoutParams.height = statusHeight
+        status.layoutParams = statusLayoutParams
+        //增加整体Toolbar的高度
+        val viewLayoutParams = view.layoutParams
+        viewLayoutParams.height += statusHeight
+        view.layoutParams = viewLayoutParams
     }
 
 
