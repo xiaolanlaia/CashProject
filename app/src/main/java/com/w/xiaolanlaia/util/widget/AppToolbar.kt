@@ -1,5 +1,6 @@
 package com.w.xiaolanlaia.util.widget
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.util.SizeUtil
+import java.util.*
 
 /**
  *  @author  xiaolanlaia
@@ -29,6 +31,12 @@ class AppToolbar : RelativeLayout{
     private lateinit var transfer : ImageView
 
     private lateinit var status : View
+
+    private var currentTime = 0L
+    private var lastTime = 0L
+
+    private var clickTime = 0
+
 
     constructor(context : Context?) : super(context)
 
@@ -52,6 +60,31 @@ class AppToolbar : RelativeLayout{
         when(style){
 
             0 -> dayToolbar()
+        }
+
+
+        back.setOnClickListener {
+
+            if (clickTime == 0){
+                lastTime = Date().time
+                clickTime = 1
+
+
+            }else{
+                clickTime = 0
+                currentTime = Date().time
+                if (currentTime - lastTime > 1000L){
+
+                    (view.context as Activity).finish()
+
+                    lastTime = currentTime
+
+
+                }
+            }
+
+
+
         }
 
 
