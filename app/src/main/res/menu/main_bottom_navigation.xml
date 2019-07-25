@@ -4,22 +4,22 @@
     <item
         android:id="@+id/day_item"
         android:icon="@mipmap/day"
-        android:title="Day"
+        android:title="收支"
     />
     <item
             android:id="@+id/week_item"
             android:icon="@mipmap/week"
-            android:title="week"
+            android:title="配置"
     />
     <item
         android:id="@+id/month_item"
         android:icon="@mipmap/month"
-        android:title="Month"
+        android:title="网格"
     />
 
     <item
         android:id="@+id/year_item"
         android:icon="@mipmap/year"
-        android:title="Year"
+        android:title="我的"
     />
 </menu>

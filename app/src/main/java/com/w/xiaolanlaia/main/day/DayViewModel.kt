@@ -10,6 +10,8 @@ import cn.qqtheme.framework.picker.OptionPicker
 import cn.qqtheme.framework.widget.WheelView
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.entity.FragmentOneBean
+import com.w.xiaolanlaia.util.CodeUtil.toast
+import java.util.*
 
 
 class DayViewModel (val repository: DayRepository) : ViewModel(){
@@ -33,7 +35,7 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         val fragmentOneBean = FragmentOneBean()
 
 
-        fragmentOneBean.number = "2019.7.21"
+        fragmentOneBean.number = "2019721" + Date().time
         fragmentOneBean.type = 0
         fragmentOneBean.project = "买鸡蛋"
         fragmentOneBean.money = 6.50
@@ -43,7 +45,7 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
 
         val fragmentOneBean1 = FragmentOneBean()
 
-        fragmentOneBean1.number = "2019.7.21"
+        fragmentOneBean1.number = "2019721" + Date().time
         fragmentOneBean1.type = 1
         fragmentOneBean1.project = "工资"
         fragmentOneBean1.money = 3000.00
@@ -67,15 +69,24 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
 
             }
 
+            R.id.left_ward_tv ->{
+                toast("左箭头")
+            }
+
+            R.id.right_ward_tv ->{
+                toast("右箭头")
+            }
+
             R.id.period_text ->{
                 val arrayList = mutableListOf<String>()
 
-
-                arrayList.add("今日")
-                arrayList.add("最近一周")
-                arrayList.add("最近一个月")
-                arrayList.add("最近一年")
-
+                arrayList.add("天")
+                arrayList.add("周")
+                arrayList.add("月")
+                arrayList.add("季")
+                arrayList.add("年")
+                arrayList.add("全部")
+                arrayList.add("自定义")
 
                 showPicker(it,arrayList.toTypedArray())
             }

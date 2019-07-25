@@ -1,11 +1,14 @@
 package com.w.xiaolanlaia.main
 
+import android.app.Activity
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.base.BaseActivity
+import com.w.xiaolanlaia.common.MyApplication.Companion.context
 import com.w.xiaolanlaia.main.day.DayFragment
 import com.w.xiaolanlaia.main.month.MonthFragment
 import com.w.xiaolanlaia.main.week.WeekFragment
@@ -17,6 +20,8 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 
 class MainActivity : BaseActivity() {
+
+    private var lastTime = 0L
 
     override fun initContentViewID(): Int  = R.layout.activity_main
 
@@ -32,6 +37,17 @@ class MainActivity : BaseActivity() {
 
 
 
+    }
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - lastTime > 1000L){
+            Toast.makeText(this,"再点击一次退出应用", Toast.LENGTH_SHORT).show()
+            lastTime = System.currentTimeMillis()
+
+        }else{
+            finish()
+
+        }
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
