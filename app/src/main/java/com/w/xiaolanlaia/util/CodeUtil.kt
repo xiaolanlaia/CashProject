@@ -1,5 +1,8 @@
 package com.w.xiaolanlaia.util
 
+import android.widget.Toast
+import com.w.xiaolanlaia.common.MyApplication
+
 /**
  *  @author  xiaolanlaia
  *
@@ -10,7 +13,7 @@ package com.w.xiaolanlaia.util
 
 object CodeUtil {
 
-    fun toast(){
-
+    fun toast(strng:String){
+        Toast.makeText(MyApplication.context,strng,Toast.LENGTH_SHORT).show()
     }
 }

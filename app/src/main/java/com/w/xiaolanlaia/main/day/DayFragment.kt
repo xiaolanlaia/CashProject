@@ -26,9 +26,9 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
         ViewModelProviders.of(this, DayVMFactory(DayRepository())).get(DayViewModel::class.java)
 
     @SuppressLint("SetTextI18n")
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bindViews.vm = vm
 
         day_view_page.adapter = DayPageAdapter((context as FragmentActivity).supportFragmentManager)
         day_tab_layout.setupWithViewPager(day_view_page)
@@ -48,6 +48,16 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
             },1500)
         }
 
+        day_transfer.visibility = view.visibility
+
+        vm.transferVisible.observe(this, Observer {
+            if (it){
+                bindViews.dayTransfer.visibility = View.VISIBLE
+            }else{
+                    bindViews.dayTransfer.visibility = View.GONE
+
+            }
+        })
 
 
     }

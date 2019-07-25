@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+//DataBinding适配kotlin
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -18,6 +20,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    //开启kotlin协程
+    kotlin {
+        experimental {
+            coroutines 'enable'
         }
     }
 
@@ -37,4 +45,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
+
 }

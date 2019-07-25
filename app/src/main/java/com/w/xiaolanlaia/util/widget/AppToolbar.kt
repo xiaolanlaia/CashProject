@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.databinding.BindingAdapter
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.util.SizeUtil
 import java.util.*
@@ -32,10 +34,7 @@ class AppToolbar : RelativeLayout{
 
     private lateinit var status : View
 
-    private var currentTime = 0L
     private var lastTime = 0L
-
-    private var clickTime = 0
 
 
     constructor(context : Context?) : super(context)
@@ -65,25 +64,14 @@ class AppToolbar : RelativeLayout{
 
         back.setOnClickListener {
 
-            if (clickTime == 0){
-                lastTime = Date().time
-                clickTime = 1
-
+            if (System.currentTimeMillis() - lastTime > 1000L){
+                Toast.makeText(context,"再点击一次退出应用",Toast.LENGTH_SHORT).show()
+                lastTime = System.currentTimeMillis()
 
             }else{
-                clickTime = 0
-                currentTime = Date().time
-                if (currentTime - lastTime > 1000L){
+                (view.context as Activity).finish()
 
-                    (view.context as Activity).finish()
-
-                    lastTime = currentTime
-
-
-                }
             }
-
-
 
         }
 
@@ -109,6 +97,22 @@ class AppToolbar : RelativeLayout{
         val viewLayoutParams = view.layoutParams
         viewLayoutParams.height += statusHeight
         view.layoutParams = viewLayoutParams
+    }
+
+    fun setTransferOnClickListener(listener : OnClickListener){
+        transfer.setOnClickListener(listener)
+    }
+
+    companion object{
+
+        /**
+         * 绑定数据转换点击事件
+         */
+        @BindingAdapter("transferOnClick")
+        @JvmStatic
+        fun setTransferOnClick(view : AppToolbar,listener : OnClickListener){
+            view.setTransferOnClickListener(listener)
+        }
     }
 
 

@@ -1,21 +1,27 @@
 package com.w.xiaolanlaia.main.day
 
+import android.view.View
+import android.widget.Button
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.entity.FragmentOneBean
+import com.w.xiaolanlaia.util.CodeUtil.toast
 
 
 class DayViewModel (val repository: DayRepository) : ViewModel(){
 
     val pay = MutableLiveData<Double>()
+    val transferVisible = MutableLiveData<Boolean>()
     var income = MutableLiveData<Double>()
     var list = MutableLiveData<List<FragmentOneBean>>()
     var list1 = mutableListOf<FragmentOneBean>()
     //访问失败，请求退出Activity
-    val requestError = MutableLiveData<Boolean>()
+
 
     init {
         initData()
+        transferVisible.value = false
     }
 
 
@@ -45,24 +51,21 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         list1.add(0,fragmentOneBean)
         list1.add(1,fragmentOneBean1)
 
-//        val payList = list1.filter {
-//            it.type == 0
-//        }
-//
-//        payList.forEachIndexed { index, item ->
-//
-//            pay.value = item.money
-//        }
-//
-//        val incomeList = list1.filter {
-//            it.type == 1
-//        }
-//
-//        incomeList.forEachIndexed { index, item ->
-//            income.value = income.value?.plus(item.money!!)
-//        }
+
 
         list.value = list1
+    }
+
+    val cashDayClick = View.OnClickListener {
+        when (it.id) {
+
+            R.id.toolbar_transfer -> {
+
+                transferVisible.value = !transferVisible.value!!
+
+            }
+
+        }
     }
 
 }

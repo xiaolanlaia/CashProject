@@ -20,10 +20,9 @@ import com.w.xiaolanlaia.R
  */
 
 
-abstract class BaseMVVMFragment<VDB : ViewDataBinding, VM : ViewModel> : Fragment(),
-    CommonMethod {
+abstract class BaseMVVMFragment<VSB : ViewDataBinding, VM : ViewModel> : Fragment(), CommonMethod {
 
-    lateinit var bindViews : VDB
+    lateinit var bindViews : VSB
     lateinit var vm : VM
 
 
