@@ -1,4 +1,4 @@
-package com.w.xiaolanlaia.main.day.fragmentone
+package com.w.xiaolanlaia.main.day.consumptionrecycler
 
 import android.os.Bundle
 import android.view.View
@@ -6,12 +6,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.base.BaseMVVMFragment
-import com.w.xiaolanlaia.databinding.FragmentOneBinding
+import com.w.xiaolanlaia.databinding.FragmentConsumptionRecyclerBinding
 import com.w.xiaolanlaia.entity.FragmentOneBean
 import com.w.xiaolanlaia.main.day.DayRepository
 import com.w.xiaolanlaia.main.day.DayVMFactory
 import com.w.xiaolanlaia.main.day.DayViewModel
-import com.w.xiaolanlaia.main.day.fragmentone.adapter.FragmentOneAdapter
+import com.w.xiaolanlaia.main.day.consumptionrecycler.adapter.FragmentOneAdapter
 
 /**
  *  @author  xiaolanlaia
@@ -21,21 +21,21 @@ import com.w.xiaolanlaia.main.day.fragmentone.adapter.FragmentOneAdapter
  */
 
 
-class FragmentOne : BaseMVVMFragment<FragmentOneBinding,DayViewModel>(){
+class ConsumptionRecyclerFragment : BaseMVVMFragment<FragmentConsumptionRecyclerBinding,DayViewModel>(){
 
 
 
-    override fun initContentViewID(): Int  = R.layout.fragment_one
+    override fun initContentViewID(): Int  = R.layout.fragment_consumption_recycler
 
     companion object{
-        const val TYPE_ONE = 0
-        const val TYPE_TWO = 1
-        const val TYPE_THREE = 2
+        const val TYPE_ZERO = 0
+        const val TYPE_ONE = 1
+        const val TYPE_TWO = 2
 
 
-        fun newInstance(type : Int) : FragmentOne{
+        fun newInstance(type : Int) : ConsumptionRecyclerFragment{
 
-            val fragment = FragmentOne()
+            val fragment = ConsumptionRecyclerFragment()
             val bundle = Bundle()
             bundle.putInt("type",type)
             fragment.arguments = bundle
@@ -48,7 +48,7 @@ class FragmentOne : BaseMVVMFragment<FragmentOneBinding,DayViewModel>(){
     private var type = 0
     override fun initViewModel(): DayViewModel {
 
-        type = arguments!!.getInt("type",1)
+        type = arguments!!.getInt("type",0)
 
         return ViewModelProviders.of(activity!!,DayVMFactory(DayRepository())).get(
             "Day$type",DayViewModel::class.java
@@ -57,7 +57,7 @@ class FragmentOne : BaseMVVMFragment<FragmentOneBinding,DayViewModel>(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var recyclerAdapter = FragmentOneAdapter()
+        val recyclerAdapter = FragmentOneAdapter()
         bindViews.fragmentOneRecycler.adapter = recyclerAdapter
 
 

@@ -73,8 +73,9 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
 
                 arrayList.add("今日")
                 arrayList.add("最近一周")
-                arrayList.add("最近一星期")
                 arrayList.add("最近一个月")
+                arrayList.add("最近一年")
+
 
                 showPicker(it,arrayList.toTypedArray())
             }

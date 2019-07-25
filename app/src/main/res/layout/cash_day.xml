@@ -35,7 +35,8 @@
                     android:layout_columnWeight="1"
                     android:layout_columnSpan="2">
                 <TextView
-                        android:text="最近一年"
+                        android:text="今日"
+                        android:textColor="@color/common_red"
                         android:gravity="center"
                         android:id="@+id/period_text"
                         android:layout_width="100dp"
@@ -137,7 +138,7 @@
                 android:background="@color/common_white"
         />
         <com.google.android.material.tabs.TabLayout
-                android:id="@+id/day_transfer"
+                android:id="@+id/transfer_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabTextColor="#333333"
@@ -154,12 +155,25 @@
                 android:layout_height="wrap_content"
         >
 
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+            >
+                <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/day_view_page"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                />
+                <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/trend_view_page"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                />
+            </LinearLayout>
 
-        <androidx.viewpager.widget.ViewPager
-                android:id="@+id/day_view_page"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-        />
+
 
         </com.baoyz.widget.PullRefreshLayout>
 

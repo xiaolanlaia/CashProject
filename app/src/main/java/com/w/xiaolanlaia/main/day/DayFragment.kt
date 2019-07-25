@@ -1,10 +1,8 @@
 package com.w.xiaolanlaia.main.day
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -16,7 +14,8 @@ import com.baoyz.widget.PullRefreshLayout
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.databinding.CashDayBinding
 import com.w.xiaolanlaia.base.BaseMVVMFragment
-import com.w.xiaolanlaia.main.day.fragmentone.FragmentOne
+import com.w.xiaolanlaia.main.day.consumptionrecycler.ConsumptionRecyclerFragment
+import com.w.xiaolanlaia.main.day.consumptiontrend.ConsumptionTrendFragment
 import kotlinx.android.synthetic.main.cash_day.*
 
 class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
@@ -30,9 +29,15 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
         super.onViewCreated(view, savedInstanceState)
         bindViews.vm = vm
 
+        //第一级TabLayout
         day_view_page.adapter = DayPageAdapter((context as FragmentActivity).supportFragmentManager)
         day_tab_layout.setupWithViewPager(day_view_page)
         day_view_page.currentItem = 0
+
+        //第二级TabLayout
+        trend_view_page.adapter = TrendPageAdapter((context as FragmentActivity).supportFragmentManager)
+        transfer_tab_layout.setupWithViewPager(trend_view_page)
+        trend_view_page.currentItem = 0
 
         vm.pay.observe(this, Observer {
             pay_text.text = "￥$it"
@@ -48,13 +53,18 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
             },1500)
         }
 
-        day_transfer.visibility = view.visibility
 
         vm.transferVisible.observe(this, Observer {
             if (it){
-                bindViews.dayTransfer.visibility = View.VISIBLE
+                bindViews.transferTabLayout.visibility = View.VISIBLE
+                bindViews.trendViewPage.visibility = View.VISIBLE
+                bindViews.dayViewPage.visibility = View.GONE
             }else{
-                    bindViews.dayTransfer.visibility = View.GONE
+                bindViews.transferTabLayout.visibility = View.GONE
+                bindViews.trendViewPage.visibility = View.GONE
+                bindViews.dayViewPage.visibility = View.VISIBLE
+
+
 
             }
         })
@@ -77,9 +87,9 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
             titles.add("支出")
             titles.add("收入")
             titles.add("全部")
-            fragments.add(FragmentOne.newInstance(FragmentOne.TYPE_ONE))
-            fragments.add(FragmentOne.newInstance(FragmentOne.TYPE_TWO))
-            fragments.add(FragmentOne.newInstance(FragmentOne.TYPE_THREE))
+            fragments.add(ConsumptionRecyclerFragment.newInstance(ConsumptionRecyclerFragment.TYPE_ZERO))
+            fragments.add(ConsumptionRecyclerFragment.newInstance(ConsumptionRecyclerFragment.TYPE_ONE))
+            fragments.add(ConsumptionRecyclerFragment.newInstance(ConsumptionRecyclerFragment.TYPE_TWO))
         }
 
         override fun getItem(position: Int): Fragment = fragments[position]
@@ -87,5 +97,25 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
         override fun getCount(): Int = fragments.size
 
         override fun getPageTitle(position: Int): CharSequence? = titles[position]
+    }
+
+    class TrendPageAdapter(fm : FragmentManager?) : FragmentPagerAdapter(fm){
+        private val trendFragments = mutableListOf<Fragment>()
+        private val trendTitle = mutableListOf<String>()
+
+        init{
+            trendTitle.add("数据统计")
+            trendTitle.add("趋势统计")
+            trendTitle.add("类型统计")
+            trendFragments.add(ConsumptionTrendFragment.newInstance(ConsumptionTrendFragment.TYPE_THREE))
+            trendFragments.add(ConsumptionTrendFragment.newInstance(ConsumptionTrendFragment.TYPE_FOUR))
+            trendFragments.add(ConsumptionTrendFragment.newInstance(ConsumptionTrendFragment.TYPE_FIVE))
+        }
+
+        override fun getItem(position: Int): Fragment = trendFragments[position]
+
+        override fun getCount(): Int = trendFragments.size
+
+        override fun getPageTitle(position: Int): CharSequence? = trendTitle[position]
     }
 }

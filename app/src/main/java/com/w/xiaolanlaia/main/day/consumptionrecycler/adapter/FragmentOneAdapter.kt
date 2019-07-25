@@ -1,4 +1,4 @@
-package com.w.xiaolanlaia.main.day.fragmentone.adapter
+package com.w.xiaolanlaia.main.day.consumptionrecycler.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.entity.FragmentOneBean
-import kotlinx.android.synthetic.main.fragment_one_item.view.*
 
 /**
  *  @author  xiaolanlaia
@@ -57,7 +56,7 @@ class FragmentOneAdapter : RecyclerView.Adapter<FragmentOneAdapter.FragmentOneVi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FragmentOneViewHelper {
         context = parent.context
 
-        val view = LayoutInflater.from(context).inflate(R.layout.fragment_one_item,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.fragment_consumption_recycler_item,parent,false)
         return FragmentOneViewHelper(view)
     }
 
