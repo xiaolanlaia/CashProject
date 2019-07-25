@@ -1,12 +1,15 @@
 package com.w.xiaolanlaia.main.day
 
+import android.app.Activity
+import android.graphics.Color
 import android.view.View
-import android.widget.Button
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import cn.qqtheme.framework.picker.OptionPicker
+import cn.qqtheme.framework.widget.WheelView
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.entity.FragmentOneBean
-import com.w.xiaolanlaia.util.CodeUtil.toast
 
 
 class DayViewModel (val repository: DayRepository) : ViewModel(){
@@ -16,7 +19,6 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
     var income = MutableLiveData<Double>()
     var list = MutableLiveData<List<FragmentOneBean>>()
     var list1 = mutableListOf<FragmentOneBean>()
-    //访问失败，请求退出Activity
 
 
     init {
@@ -65,7 +67,44 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
 
             }
 
+            R.id.period_text ->{
+                val arrayList = mutableListOf<String>()
+
+
+                arrayList.add("今日")
+                arrayList.add("最近一周")
+                arrayList.add("最近一星期")
+                arrayList.add("最近一个月")
+
+                showPicker(it,arrayList.toTypedArray())
+            }
+
         }
+    }
+
+    private fun showPicker(view: View, array : Array<String>){
+        val optionPicker = OptionPicker(view.context as Activity,array)
+        optionPicker.setTitleText("请选择时间")
+        optionPicker.setTextSize(18)
+        optionPicker.setCancelTextColor(Color.BLACK)
+        optionPicker.setSubmitTextColor(Color.BLACK)
+        optionPicker.setTitleTextSize(20)
+        optionPicker.setLineSpaceMultiplier(3.5f)
+        optionPicker.setTopLineColor(Color.TRANSPARENT)
+        optionPicker.setDividerConfig(WheelView.DividerConfig().setVisible(false))
+        optionPicker.setShadowColor(view.context.getColor(R.color.bottom_grey), 14)
+        optionPicker.setTextColor(view.context.getColor(R.color.common_blue))
+        optionPicker.setOffset(2)
+        optionPicker.show()
+
+        optionPicker.setOnOptionPickListener(object : OptionPicker.OnOptionPickListener(){
+            override fun onOptionPicked(index: Int, item: String?) {
+                view as TextView
+                view.text = item
+            }
+        })
+
+
     }
 
 }

@@ -30,17 +30,28 @@
                     android:layout_column="0"
                     android:gravity="center"
                     android:layout_marginTop="40dp"
-
                     android:orientation="vertical"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
-                    android:layout_columnSpan="2"
-
-            >
+                    android:layout_columnSpan="2">
+                <TextView
+                        android:text="最近一年"
+                        android:gravity="center"
+                        android:id="@+id/period_text"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:paddingEnd="2dp"
+                        android:drawableEnd="@mipmap/downward"
+                        android:background="@drawable/round_line_background"
+                        android:onClick="@{vm.cashDayClick}"
+                />
                 <TextView
                         android:text="收支统计"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         style="@style/cash_day_grey"
                 />
@@ -133,7 +144,7 @@
                 app:tabSelectedTextColor="#007AFF"
                 app:tabIndicatorColor="#007AFF"
                 app:tabIndicatorFullWidth="false"
-                android:background="@drawable/top_line_background"
+                android:background="@drawable/round_line_background"
 
         />
 
