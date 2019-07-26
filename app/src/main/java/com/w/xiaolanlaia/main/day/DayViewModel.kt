@@ -26,11 +26,13 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
     val transferVisible = MutableLiveData<Boolean>()
     var income = MutableLiveData<Double>()
     var list = MutableLiveData<List<FragmentOneBean>>()
+    var periodText = MutableLiveData<String>()
     var list1 = mutableListOf<FragmentOneBean>()
 
 
     init {
         initData()
+        periodText.value = getCurrentDate()
         transferVisible.value = false
     }
 
@@ -116,6 +118,7 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         optionPicker.show()
 
         optionPicker.setOnOptionPickListener(object : OptionPicker.OnOptionPickListener(){
+            @SuppressLint("SetTextI18n")
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onOptionPicked(index: Int, item: String?) {
                 view as TextView
@@ -156,7 +159,7 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
 
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
         val date = Date(System.currentTimeMillis())
-        return simpleDateFormat.format(date)
+        return "${simpleDateFormat.format(date)}(天)"
     }
 
     /**
@@ -187,7 +190,7 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         val lastDay = simpleDateFormat2.format(date2)
 
         //组装日期
-        return "$firstDay-$lastDay"
+        return "$firstDay - $lastDay(周)"
     }
 
     /**
@@ -195,21 +198,9 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
      */
     fun getMonthDate() : String{
 
-        //今天的日期
-        val simpleDateFormat2 = SimpleDateFormat("dd")
-        val date2 = Date(System.currentTimeMillis())
-        val lastDay = simpleDateFormat2.format(date2)
+        val c = java.util.Calendar.getInstance()
+        return "${c.get(java.util.Calendar.YEAR)}.${c.get(java.util.Calendar.MONTH) + 1}  (月)"
 
-        //将天数转换成毫秒数
-        val dayToMill = (lastDay.toLong() - 1) * 1000 * 60 * 60 * 24
-
-        //第一天的日期
-        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
-        val date = Date(System.currentTimeMillis() - dayToMill)
-        val firstDay = simpleDateFormat.format(date)
-
-        //组装日期
-        return "$firstDay-$lastDay"
     }
 
     /**
@@ -217,24 +208,24 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
      */
     fun getQuarterDate() : String{
 
-        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
+        val simpleDateFormat = SimpleDateFormat("yyyy.MM")
         val date = Date(currentQuarterStartTime!!.time)
         val firstDay = simpleDateFormat.format(date)
 
-        val simpleDateFormat2 = SimpleDateFormat("MM.dd")
+        val simpleDateFormat2 = SimpleDateFormat("MM")
         val date2 = Date(currentQuarterEndTime!!.time)
         val lastDay = simpleDateFormat2.format(date2)
 
-        return "$firstDay-$lastDay"
+        return "$firstDay - $lastDay(季)"
     }
 
     /**
      * 获取年份
      */
     fun getYearDate() : String{
-        val simpleDateFormat = SimpleDateFormat("yyyy")
-        val date = Date(System.currentTimeMillis())
-        return simpleDateFormat.format(date)
+        val c = java.util.Calendar.getInstance()
+        val currentYear = c.get(java.util.Calendar.YEAR)
+        return "$currentYear(年)"
     }
 
     private val longSdf = SimpleDateFormat("yyyy-MM-dd")
@@ -250,10 +241,10 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
             var quarterStart: Date? = null
             try {
                 when (currentMonth) {
-                    in 1..3 -> c.set(java.util.Calendar.MONTH, 0)
-                    in 4..6 -> c.set(java.util.Calendar.MONTH, 3)
-                    in 7..9 -> c.set(java.util.Calendar.MONTH, 4)
-                    in 10..12 -> c.set(java.util.Calendar.MONTH, 9)
+                    in 1..3 -> c.set(currentMonth, 0)
+                    in 4..6 -> c.set(currentMonth, 3)
+                    in 7..9 -> c.set(currentMonth, 4)
+                    in 10..12 -> c.set(currentMonth, 9)
                 }
                 c.set(java.util.Calendar.DATE, 1)
                 println(c.time)

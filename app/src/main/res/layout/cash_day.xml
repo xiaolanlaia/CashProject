@@ -48,7 +48,7 @@
                             android:layout_marginEnd="10dp"
                             android:onClick="@{vm.cashDayClick}"/>
                     <TextView
-                            android:text="今日"
+                            android:text="@{vm.periodText}"
                             android:textColor="@color/common_red"
                             android:gravity="center"
                             android:id="@+id/period_text"
