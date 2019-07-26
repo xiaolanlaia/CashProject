@@ -13,7 +13,7 @@ import com.w.xiaolanlaia.common.MyApplication
 
 object CodeUtil {
 
-    fun toast(strng:String){
-        Toast.makeText(MyApplication.context,strng,Toast.LENGTH_SHORT).show()
+    fun toast(str:String){
+        Toast.makeText(MyApplication.context,str,Toast.LENGTH_SHORT).show()
     }
 }

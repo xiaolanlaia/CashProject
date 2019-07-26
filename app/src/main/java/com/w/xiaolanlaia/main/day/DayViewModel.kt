@@ -1,9 +1,13 @@
 package com.w.xiaolanlaia.main.day
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
+import android.icu.util.Calendar
+import android.os.Build
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cn.qqtheme.framework.picker.OptionPicker
@@ -11,9 +15,10 @@ import cn.qqtheme.framework.widget.WheelView
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.entity.FragmentOneBean
 import com.w.xiaolanlaia.util.CodeUtil.toast
+import java.text.SimpleDateFormat
 import java.util.*
 
-
+@SuppressLint("SimpleDateFormat")
 class DayViewModel (val repository: DayRepository) : ViewModel(){
 
     val pay = MutableLiveData<Double>()
@@ -110,13 +115,190 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         optionPicker.show()
 
         optionPicker.setOnOptionPickListener(object : OptionPicker.OnOptionPickListener(){
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun onOptionPicked(index: Int, item: String?) {
                 view as TextView
-                view.text = item
+                when(item){
+                    "天" ->{
+                        view.text = getCurrentDate()
+
+                    }
+                    "周" ->{
+
+                        view.text = getWeekDate()
+
+                    }
+                    "月" ->{
+                        view.text = getMonthDate()
+                    }
+                    "季" ->{
+                        view.text = getQuarterDate()
+                    }
+                    "年" ->{
+                        view.text = getYearDate()
+                    }
+                    "全部" ->{
+                        view.text = item
+                    }
+                    "自定义" ->{
+                        view.text = item
+                    }
+                }
             }
         })
-
-
     }
+
+    /**
+     * 获取当前日期
+     */
+    fun getCurrentDate() : String{
+        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
+        val date = Date(System.currentTimeMillis())
+        return simpleDateFormat.format(date)
+    }
+
+    /**
+     * 获取周区间日期
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    fun getWeekDate(): String {
+
+        val cal = Calendar.getInstance()
+        cal.time = Date()
+
+        //得到今天与星期一相隔几天
+        var w = cal.get(Calendar.DAY_OF_WEEK) - 2
+        if (w < 0)
+            w = 0
+
+        //将天数转换成毫秒数
+        val dayToMill = w * 1000 * 60 * 60 * 24
+
+        //第一天的日期
+        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
+        val date = Date(System.currentTimeMillis() - dayToMill)
+        val firstDay = simpleDateFormat.format(date)
+
+        //今天的日期
+        val simpleDateFormat2 = SimpleDateFormat("dd")
+        val date2 = Date(System.currentTimeMillis())
+        val lastDay = simpleDateFormat2.format(date2)
+
+        //组装日期
+        return "$firstDay-$lastDay"
+    }
+
+    /**
+     * 获取月区间日期
+     */
+    fun getMonthDate() : String{
+
+        //今天的日期
+        val simpleDateFormat2 = SimpleDateFormat("dd")
+        val date2 = Date(System.currentTimeMillis())
+        val lastDay = simpleDateFormat2.format(date2)
+        val k = lastDay.substring(0,lastDay.length-1).toLong() -1
+
+
+        //将天数转换成毫秒数
+        val dayToMill = k * 1000 * 60 * 60 * 24
+
+        //第一天的日期
+        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
+        val date = Date(System.currentTimeMillis() - dayToMill)
+        val firstDay = simpleDateFormat.format(date)
+
+        //组装日期
+        return "$firstDay-$lastDay"
+    }
+
+    /**
+     * 季度期间日期
+     */
+    fun getQuarterDate() : String{
+
+        val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
+        val date = Date(currentQuarterStartTime!!.time)
+        val firstDay = simpleDateFormat.format(date)
+
+        val simpleDateFormat2 = SimpleDateFormat("MM.dd")
+        val date2 = Date(currentQuarterEndTime!!.time)
+        val lastDay = simpleDateFormat2.format(date2)
+
+        return "$firstDay-$lastDay"
+    }
+
+    /**
+     * 获取年份
+     */
+    fun getYearDate() : String{
+        val simpleDateFormat = SimpleDateFormat("yyyy")
+        val date = Date(System.currentTimeMillis())
+        return simpleDateFormat.format(date)
+    }
+
+    private val longSdf = SimpleDateFormat("yyyy-MM-dd")
+    private val shortSdf = SimpleDateFormat("yyyy-MM-dd")
+    /**
+     * 当前季度的开始时间，即2012-01-1 00:00:00
+     * @return
+     */
+    private val currentQuarterStartTime: Date?
+        get() {
+            val c = java.util.Calendar.getInstance()
+            val currentMonth = c.get(java.util.Calendar.MONTH) + 1
+            var quarterStart: Date? = null
+            try {
+                when (currentMonth) {
+                    in 1..3 -> c.set(java.util.Calendar.MONTH, 0)
+                    in 4..6 -> c.set(java.util.Calendar.MONTH, 3)
+                    in 7..9 -> c.set(java.util.Calendar.MONTH, 4)
+                    in 10..12 -> c.set(java.util.Calendar.MONTH, 9)
+                }
+                c.set(java.util.Calendar.DATE, 1)
+                println(c.time)
+                quarterStart = longSdf.parse(shortSdf.format(c.time) + " 00:00:00")
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+            return quarterStart
+        }
+
+    /**
+     * 当前季度的结束时间，即2012-03-31 23:59:59
+     * @return
+     */
+    private val currentQuarterEndTime: Date?
+        get() {
+            val c = java.util.Calendar.getInstance()
+            val currentMonth = c.get(java.util.Calendar.MONTH) + 1
+            var quarterEnd: Date? = null
+            try {
+                when (currentMonth) {
+                    in 1..3 -> {
+                        c.set(java.util.Calendar.MONTH, 2)
+                        c.set(java.util.Calendar.DATE, 31)
+                    }
+                    in 4..6 -> {
+                        c.set(java.util.Calendar.MONTH, 5)
+                        c.set(java.util.Calendar.DATE, 30)
+                    }
+                    in 7..9 -> {
+                        c.set(java.util.Calendar.MONTH, 8)
+                        c.set(java.util.Calendar.DATE, 30)
+                    }
+                    in 10..12 -> {
+                        c.set(java.util.Calendar.MONTH, 11)
+                        c.set(java.util.Calendar.DATE, 31)
+                    }
+                }
+                quarterEnd = longSdf.parse(shortSdf.format(c.time) + " 23:59:59")
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+            return quarterEnd
+        }
 
 }
