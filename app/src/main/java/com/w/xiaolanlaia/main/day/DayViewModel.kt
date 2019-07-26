@@ -2,6 +2,7 @@ package com.w.xiaolanlaia.main.day
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Build
@@ -152,6 +153,7 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
      * 获取当前日期
      */
     fun getCurrentDate() : String{
+
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
         val date = Date(System.currentTimeMillis())
         return simpleDateFormat.format(date)
@@ -197,11 +199,9 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         val simpleDateFormat2 = SimpleDateFormat("dd")
         val date2 = Date(System.currentTimeMillis())
         val lastDay = simpleDateFormat2.format(date2)
-        val k = lastDay.substring(0,lastDay.length-1).toLong() -1
-
 
         //将天数转换成毫秒数
-        val dayToMill = k * 1000 * 60 * 60 * 24
+        val dayToMill = (lastDay.toLong() - 1) * 1000 * 60 * 60 * 24
 
         //第一天的日期
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
