@@ -77,7 +77,7 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
         day_toolbar.fitTransparentStatus()
     }
 
-    class DayPageAdapter(fm : FragmentManager?) : FragmentPagerAdapter(fm){
+    class DayPageAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
 
         private val fragments = mutableListOf<Fragment>()
         private val titles = mutableListOf<String>()
@@ -99,7 +99,7 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
         override fun getPageTitle(position: Int): CharSequence? = titles[position]
     }
 
-    class TrendPageAdapter(fm : FragmentManager?) : FragmentPagerAdapter(fm){
+    class TrendPageAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm){
         private val trendFragments = mutableListOf<Fragment>()
         private val trendTitle = mutableListOf<String>()
 

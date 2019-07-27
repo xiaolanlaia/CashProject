@@ -2,22 +2,22 @@ package com.w.xiaolanlaia.main.day
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.graphics.Color
 import android.icu.util.Calendar
-import android.os.Build
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cn.qqtheme.framework.picker.OptionPicker
 import cn.qqtheme.framework.widget.WheelView
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.entity.FragmentOneBean
-import com.w.xiaolanlaia.util.CodeUtil.toast
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
+
+
 
 @SuppressLint("SimpleDateFormat")
 class DayViewModel (val repository: DayRepository) : ViewModel(){
@@ -27,13 +27,21 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
     var income = MutableLiveData<Double>()
     var list = MutableLiveData<List<FragmentOneBean>>()
     var periodText = MutableLiveData<String>()
+    var addDay = 0
+    var selectPickerPosition = 0
     var list1 = mutableListOf<FragmentOneBean>()
 
 
     init {
         initData()
-        periodText.value = getCurrentDate()
+        periodText.value = getDayDate()
         transferVisible.value = false
+    }
+
+    fun init(){
+
+        addDay = 0
+
     }
 
 
@@ -68,7 +76,7 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         list.value = list1
     }
 
-    val cashDayClick = View.OnClickListener {
+    val cashDayClick = OnClickListener {
         when (it.id) {
 
             R.id.toolbar_transfer -> {
@@ -78,11 +86,19 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
             }
 
             R.id.left_ward_tv ->{
-                toast("左箭头")
+
+                addDay --
+
+                transferPeriodDate()
+
             }
 
             R.id.right_ward_tv ->{
-                toast("右箭头")
+
+                addDay ++
+
+                transferPeriodDate()
+
             }
 
             R.id.period_text ->{
@@ -102,7 +118,45 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         }
     }
 
+    private fun transferPeriodDate() {
+
+        when (selectPickerPosition) {
+
+            0 -> {
+                periodText.value = getDayDate()
+            }
+            1 -> {
+                periodText.value = getWeekDate()
+
+            }
+            2 -> {
+                periodText.value = getMonthDate()
+
+            }
+            3 -> {
+                periodText.value = getQuarterDate()
+
+            }
+            4 -> {
+                periodText.value = getYearDate()
+
+            }
+            5 -> {
+                periodText.value = getAllDate()
+
+            }
+            6 -> {
+                periodText.value = getCustomDate()
+
+            }
+        }
+    }
+
+
     private fun showPicker(view: View, array : Array<String>){
+
+        init()
+
         val optionPicker = OptionPicker(view.context as Activity,array)
         optionPicker.setTitleText("请选择时间")
         optionPicker.setTextSize(18)
@@ -118,13 +172,14 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         optionPicker.show()
 
         optionPicker.setOnOptionPickListener(object : OptionPicker.OnOptionPickListener(){
-            @SuppressLint("SetTextI18n")
-            @RequiresApi(Build.VERSION_CODES.N)
+
             override fun onOptionPicked(index: Int, item: String?) {
                 view as TextView
+                selectPickerPosition = index
+
                 when(item){
                     "天" ->{
-                        view.text = getCurrentDate()
+                        view.text = getDayDate()
 
                     }
                     "周" ->{
@@ -155,17 +210,23 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
     /**
      * 获取当前日期
      */
-    fun getCurrentDate() : String{
+    fun getDayDate() : String{
+
+        val time = LocalDateTime.now()
+        val time2 = time.minusDays(1)
+
 
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
-        val date = Date(System.currentTimeMillis())
+
+        val date = Date(System.currentTimeMillis() + (addDay * 1000 * 60 * 60 * 24))
+
         return "${simpleDateFormat.format(date)}(天)"
+
     }
 
     /**
      * 获取周区间日期
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     fun getWeekDate(): String {
 
         val cal = Calendar.getInstance()
@@ -179,14 +240,14 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         //将天数转换成毫秒数
         val dayToMill = w * 1000 * 60 * 60 * 24
 
-        //第一天的日期
+        //周一的日期
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
-        val date = Date(System.currentTimeMillis() - dayToMill)
+        val date = Date(System.currentTimeMillis() - dayToMill + 7 * addDay * 1000 * 60 * 60 * 24 )
         val firstDay = simpleDateFormat.format(date)
 
-        //今天的日期
+        //周日的日期
         val simpleDateFormat2 = SimpleDateFormat("dd")
-        val date2 = Date(System.currentTimeMillis())
+        val date2 = Date(System.currentTimeMillis() + (6 - w + 7 * addDay) * 1000 * 60 * 60 * 24)
         val lastDay = simpleDateFormat2.format(date2)
 
         //组装日期
@@ -197,6 +258,7 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
      * 获取月区间日期
      */
     fun getMonthDate() : String{
+
 
         val c = java.util.Calendar.getInstance()
         return "${c.get(java.util.Calendar.YEAR)}.${c.get(java.util.Calendar.MONTH) + 1}  (月)"
@@ -226,6 +288,21 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         val c = java.util.Calendar.getInstance()
         val currentYear = c.get(java.util.Calendar.YEAR)
         return "$currentYear(年)"
+    }
+
+    /**
+     * 获取全部
+     */
+    fun getAllDate(): String{
+        return "k"
+    }
+
+    /**
+     * 自定义
+     */
+    fun getCustomDate(): String{
+        return "k"
+
     }
 
     private val longSdf = SimpleDateFormat("yyyy-MM-dd")
