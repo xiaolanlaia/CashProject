@@ -40,7 +40,7 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
         trend_view_page.currentItem = 0
 
         vm.pay.observe(this, Observer {
-            pay_text.text = "￥$it"
+            tv_pay.text = "￥$it"
         })
 
         bindViews.pullRefresh.setRefreshStyle(PullRefreshLayout.STYLE_RING)

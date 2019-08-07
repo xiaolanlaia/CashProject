@@ -15,5 +15,6 @@
 
     <color name="bottom_grey">#CCCCCC</color>
     <color name="background_grey">#F6F6F6</color>
+    <color name="color_text_blue">#007AFF</color>
 
 </resources>

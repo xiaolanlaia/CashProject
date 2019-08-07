@@ -29,7 +29,7 @@
                     android:layout_row="0"
                     android:layout_column="0"
                     android:gravity="center"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="@dimen/dp_forty"
                     android:orientation="vertical"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
@@ -45,18 +45,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@mipmap/left_arrow"
-                            android:layout_marginEnd="10dp"
+                            android:layout_marginEnd="@dimen/dp_ten"
                             android:onClick="@{vm.cashDayClick}"/>
                     <TextView
                             android:text="@{vm.periodText}"
                             android:textColor="@color/common_red"
                             android:gravity="center"
                             android:id="@+id/period_text"
-                            android:layout_width="200dp"
+                            android:layout_width="@dimen/dp_two_hundred"
                             android:layout_height="wrap_content"
-                            android:paddingTop="2dp"
-                            android:paddingBottom="2dp"
-                            android:paddingEnd="10dp"
+                            android:paddingTop="@dimen/dp_two"
+                            android:paddingBottom="@dimen/dp_two"
+                            android:paddingEnd="@dimen/dp_ten"
                             android:drawableEnd="@mipmap/downward"
                             android:background="@drawable/round_line_background"
                             android:onClick="@{vm.cashDayClick}"
@@ -66,25 +66,25 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@mipmap/right_arrow"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="@dimen/dp_ten"
                             android:onClick="@{vm.cashDayClick}"/>
 
                 </LinearLayout>
 
                 <TextView
-                        android:text="收支统计"
+                        android:text="@string/statistics_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/dp_ten"
                         android:gravity="center"
                         style="@style/cash_day_grey"
                 />
                 <TextView
-                        android:id="@+id/accountant_text"
-                        android:text="￥---"
+                        android:id="@+id/tv_accountant"
+                        android:text="@string/tv_accountant_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/dp_ten"
                         android:gravity="center"
                         style="@style/cash_day_black"/>
 
@@ -100,15 +100,15 @@
                     android:layout_marginBottom="20dp"
             >
                 <TextView
-                        android:text="支出"
+                        android:text="@string/pay_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         style="@style/cash_day_grey"
                 />
                 <TextView
-                        android:id="@+id/pay_text"
-                        android:text="￥----"
+                        android:id="@+id/tv_pay"
+                        android:text="@string/tv_pay_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -123,21 +123,21 @@
                     android:orientation="vertical"
                     android:layout_rowWeight="1"
                     android:layout_columnWeight="1"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="@dimen/dp_twenty"
+                    android:layout_marginBottom="@dimen/dp_twenty"
 
 
             >
                 <TextView
-                        android:text="收入"
+                        android:text="@string/income_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         style="@style/cash_day_grey"
                 />
                 <TextView
-                        android:id="@+id/income_text"
-                        android:text="￥----"
+                        android:id="@+id/tv_income"
+                        android:text="@string/tv_income_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -153,20 +153,20 @@
                 android:id="@+id/day_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabTextColor="#333333"
-                app:tabSelectedTextColor="#007AFF"
-                app:tabIndicatorColor="#007AFF"
+                app:tabTextColor="@color/color_text_blue"
+                app:tabSelectedTextColor="@color/color_text_blue"
+                app:tabIndicatorColor="@color/color_text_blue"
                 app:tabIndicatorFullWidth="false"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/dp_ten"
                 android:background="@color/common_white"
         />
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/transfer_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabTextColor="#333333"
-                app:tabSelectedTextColor="#007AFF"
-                app:tabIndicatorColor="#007AFF"
+                app:tabTextColor="@color/color_text_blue"
+                app:tabSelectedTextColor="@color/color_text_blue"
+                app:tabIndicatorColor="@color/color_text_blue"
                 app:tabIndicatorFullWidth="false"
                 android:background="@drawable/round_line_background"
 

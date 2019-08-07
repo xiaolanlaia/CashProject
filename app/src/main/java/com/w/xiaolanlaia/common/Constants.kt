@@ -1,5 +1,8 @@
 package com.w.xiaolanlaia.common
 
+import com.w.xiaolanlaia.BuildConfig
+
+
 /**
  *  @author  xiaolanlaia
  *
@@ -12,6 +15,8 @@ internal interface Constants{
 
         const val PAY = "pay"
         const val INCOME = "income"
+
+        const val environment = BuildConfig.ENVIRONMENT
     }
 }
 
