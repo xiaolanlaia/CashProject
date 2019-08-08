@@ -41,6 +41,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         flavorDimensions "versionCode"
         signingConfig signingConfigs.release
+        //保留中文和英文国际化支持
+        resConfigs "en","zh"
     }
 
 
@@ -87,8 +89,8 @@ android {
         }
 
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

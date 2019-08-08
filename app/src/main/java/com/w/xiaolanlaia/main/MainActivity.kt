@@ -1,14 +1,11 @@
 package com.w.xiaolanlaia.main
 
-import android.app.Activity
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.base.BaseActivity
-import com.w.xiaolanlaia.common.MyApplication.Companion.context
 import com.w.xiaolanlaia.main.day.DayFragment
 import com.w.xiaolanlaia.main.month.MonthFragment
 import com.w.xiaolanlaia.main.week.WeekFragment
