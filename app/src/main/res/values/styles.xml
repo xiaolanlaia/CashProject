@@ -13,21 +13,21 @@
 
     <style name="cash_day_grey">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/common_grey</item>
+        <item name="android:textColor">@color/color_common_grey</item>
     </style>
 
     <style name="cash_day_black">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/common_black</item>
+        <item name="android:textColor">@color/color_common_black</item>
     </style>
 
     <style name="cash_day_red">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/common_red</item>
+        <item name="android:textColor">@color/color_common_red</item>
     </style>
     <style name="cash_day_blue">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/common_blue</item>
+        <item name="android:textColor">@color/color_common_blue</item>
     </style>
 
     <!--Toolbar-->

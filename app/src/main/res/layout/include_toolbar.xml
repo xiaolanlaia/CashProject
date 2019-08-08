@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/common_white"
->
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/toolbar_status_height"
+        android:background="@color/color_common_white"
     >
         <TextView
                 android:id="@+id/toolbar_title"
@@ -17,7 +13,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:textSize="@dimen/toolbar_text_size"
-                android:textColor="@color/common_black"
+                android:textColor="@color/color_common_black"
         />
 
         <ImageView
@@ -36,4 +32,3 @@
         />
 
     </RelativeLayout>
-</LinearLayout>

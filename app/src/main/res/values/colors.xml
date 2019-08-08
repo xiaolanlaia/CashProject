@@ -7,14 +7,14 @@
 
 
 
-    <color name="common_white">#ffffff</color>
-    <color name="common_black">#000000</color>
-    <color name="common_grey">#FF666666</color>
-    <color name="common_blue">#007AFF</color>
-    <color name="common_red">#D81B60</color>
+    <color name="color_common_white">#ffffff</color>
+    <color name="color_common_black">#000000</color>
+    <color name="color_common_grey">#FF666666</color>
+    <color name="color_common_blue">#007AFF</color>
+    <color name="color_common_red">#D81B60</color>
 
-    <color name="bottom_grey">#CCCCCC</color>
-    <color name="background_grey">#F6F6F6</color>
+    <color name="color_hint_grey">#CCCCCC</color>
+    <color name="color_background_grey">#F6F6F6</color>
     <color name="color_text_blue">#007AFF</color>
 
 </resources>

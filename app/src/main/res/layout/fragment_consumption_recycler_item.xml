@@ -13,7 +13,7 @@
     <TextView
             android:id="@+id/number"
             android:text="编号"
-            android:textColor="@color/common_black"
+            android:textColor="@color/color_common_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"

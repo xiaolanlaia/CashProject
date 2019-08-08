@@ -7,8 +7,10 @@ apply plugin: 'kotlin-android-extensions'
 //DataBinding适配kotlin
 apply plugin: 'kotlin-kapt'
 
+
+
 Properties properties = new Properties()
-InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream()
+InputStream inputStream = rootProject.file('local.properties').newDataInputStream()
 properties.load(inputStream)
 android {
 
@@ -27,13 +29,15 @@ android {
             keyPassword properties.getProperty('keyPassword')
         }
     }
-    compileSdkVersion 28
+
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
     defaultConfig {
-        applicationId "com.w.xiaolanlaia"
-        minSdkVersion 26
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         flavorDimensions "versionCode"
         signingConfig signingConfigs.release
@@ -50,7 +54,10 @@ android {
             buildConfigField "String","ENVIRONMENT",'"xiaolanlaia"'
             manifestPlaceholders = [
                     ENVIRONMENT : "xiaolanlaia",
-                    app_name    : "晓懒来啊"
+                    app_name    : "晓懒来啊",
+                    app_icon    : "@mipmap/ic_launcher",
+                    app_style   : "@style/AppTheme",
+
 
             ]
         }
@@ -63,14 +70,25 @@ android {
             buildConfigField "String","ENVIRONMENT",'"niuniu"'
             manifestPlaceholders = [
                     ENVIRONMENT : "niuniu",
-                    app_name    : "牛牛"
+                    app_name    : "牛牛",
+                    app_icon    : "@mipmap/ic_launcher",
+                    app_style   : "@style/AppTheme",
+
+
 
             ]
         }
     }
     buildTypes {
-        release {
+
+        debug{
             minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -81,11 +99,16 @@ android {
             coroutines 'enable'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     dataBinding{
         enabled = true
     }
 
+    //apk打包
     android.applicationVariants.all { variant ->
 
         def buildType = variant.buildType.name
@@ -118,17 +141,19 @@ kapt{
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta2'
-    implementation 'com.android.support:design:28.3.1'
-    testImplementation 'junit:junit:4.13-beta-3'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02'
-    implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
-    implementation 'cn.qqtheme.framework:WheelPicker:1.5.6'
-    //lifecycle扩展
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02'
+
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["lifecycle-extensions"]
+    implementation rootProject.ext.dependencies["pullrefreshlayout"]
+    implementation rootProject.ext.dependencies["WheelPicker"]
+    implementation rootProject.ext.dependencies["kotlin-stdlib-jdk7"]
+    implementation rootProject.ext.dependencies["constraint-layout"]
+    implementation rootProject.ext.dependencies["design"]
+
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["runner"]
+    androidTestImplementation rootProject.ext.dependencies["espresso-core"]
+
+
 
 }

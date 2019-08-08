@@ -166,8 +166,8 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         optionPicker.setLineSpaceMultiplier(3.5f)
         optionPicker.setTopLineColor(Color.TRANSPARENT)
         optionPicker.setDividerConfig(WheelView.DividerConfig().setVisible(false))
-        optionPicker.setShadowColor(view.context.getColor(R.color.bottom_grey), 14)
-        optionPicker.setTextColor(view.context.getColor(R.color.common_blue))
+        optionPicker.setShadowColor(view.context.getColor(R.color.color_hint_grey), 14)
+        optionPicker.setTextColor(view.context.getColor(R.color.color_common_blue))
         optionPicker.setOffset(2)
         optionPicker.show()
 

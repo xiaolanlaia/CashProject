@@ -2,12 +2,11 @@
     <!--<string name="app_name">晓懒来啊</string>-->
 
 
+    <!--cash_day-->
     <string name="statistics_text">收支统计</string>
-    <string name="tv_accountant_text">￥---</string>
+    <string name="tv_money_default_text">￥---</string>
     <string name="pay_text">支出</string>
-    <string name="tv_pay_text">￥----</string>
     <string name="income_text">收入</string>
-    <string name="tv_income_text">￥----</string>
     <string name="project_text">Project</string>
     <string name="time_text">Time</string>
     <string name="money_text">Money</string>
