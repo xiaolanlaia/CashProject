@@ -151,6 +151,7 @@ dependencies {
     implementation rootProject.ext.dependencies["kotlin-stdlib-jdk7"]
     implementation rootProject.ext.dependencies["constraint-layout"]
     implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["aspectjrt"]
 
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["runner"]

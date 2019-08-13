@@ -65,7 +65,6 @@ class DayFragment : BaseMVVMFragment<CashDayBinding, DayViewModel>(){
                 bindViews.dayViewPage.visibility = View.VISIBLE
 
 
-
             }
         })
 
