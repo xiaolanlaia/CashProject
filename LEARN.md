@@ -29,7 +29,7 @@ bindView.planPaybackText.text = simpleDateFormat.format(newDate)
 ## 16. RxBinding
 ## 17. 强制更新版本的字符串对比
 ## 18. 设置控件在屏幕居中（获取屏幕参数）
-```
+```Kotlin
 val mLayoutParams1 = RelativeLayout.LayoutParams(
     RelativeLayout.LayoutParams.WRAP_CONTENT,
     RelativeLayout.LayoutParams.WRAP_CONTENT
