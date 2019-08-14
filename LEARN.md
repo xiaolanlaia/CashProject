@@ -14,7 +14,7 @@ val str :String = String.format("%.2f",(it.data?.interest))
 str.substring(0, str.length -1) 
 ```
 ## 9. 将毫秒转化成日期
-```
+```kotlin
 val strb = vm.planPayBack.value!!.toLong()
 val newDate = Date(strb)
 val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -29,7 +29,7 @@ bindView.planPaybackText.text = simpleDateFormat.format(newDate)
 ## 16. RxBinding
 ## 17. 强制更新版本的字符串对比
 ## 18. 设置控件在屏幕居中（获取屏幕参数）
-```Kotlin
+```kotlin
 val mLayoutParams1 = RelativeLayout.LayoutParams(
     RelativeLayout.LayoutParams.WRAP_CONTENT,
     RelativeLayout.LayoutParams.WRAP_CONTENT
