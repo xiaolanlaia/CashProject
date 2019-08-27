@@ -23,6 +23,7 @@ ext{
             "runner"                 :'com.android.support.test:runner:1.0.2',
             "espresso-core"          :'com.android.support.test.espresso:espresso-core:3.0.2',
             "aspectjrt"              :'org.aspectj:aspectjrt:1.8.9',
+            "aop-arms"              :'cn.com.superLei:aop-arms:1.0.2',
 
     ]
 

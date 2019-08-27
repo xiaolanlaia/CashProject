@@ -19,8 +19,7 @@ import com.w.xiaolanlaia.R
  */
 
 
-abstract class BaseMVVMActivity<VDB : ViewDataBinding,VM : ViewModel> : AppCompatActivity(),
-    CommonMethod {
+abstract class BaseMVVMActivity<VDB : ViewDataBinding,VM : ViewModel> : AppCompatActivity(), CommonMethod {
 
     lateinit var bindView : VDB
     lateinit var vm : VM
