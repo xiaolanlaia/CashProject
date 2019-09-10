@@ -13,24 +13,27 @@ apply plugin: 'kotlin-kapt'
 
 Properties properties = new Properties()
 InputStream inputStream = rootProject.file('local.properties').newDataInputStream()
+
 properties.load(inputStream)
 android {
 
-    signingConfigs{
-
+    signingConfigs {
         release {
+            File strFile = new File("../signing/xiaolanlaia.jks")
             storeFile file(strFile)
-            storePassword properties.getProperty('keyPassword')
-            keyAlias = properties.getProperty('keyAlias')
-            keyPassword properties.getProperty('keyPassword')
+            storePassword properties.getProperty("keyPassword")
+            keyAlias properties.getProperty("keyAlias")
+            keyPassword properties.getProperty("keyPassword")
         }
         debug {
+            File strFile = new File("../signing/xiaolanlaia.jks")
             storeFile file(strFile)
-            storePassword properties.getProperty('keyPassword')
-            keyAlias = properties.getProperty('keyAlias')
-            keyPassword properties.getProperty('keyPassword')
+            storePassword properties.getProperty("keyPassword")
+            keyAlias properties.getProperty("keyAlias")
+            keyPassword properties.getProperty("keyPassword")
         }
     }
+
 
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -41,7 +44,7 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        flavorDimensions "versionCode"
+        flavorDimensions "wu"
         signingConfig signingConfigs.release
         //保留中文和英文国际化支持
         resConfigs "en","zh"
@@ -112,7 +115,10 @@ android {
         enabled = true
     }
 
-    //apk打包
+    /**
+     * apk打包
+     */
+
     android.applicationVariants.all { variant ->
 
         def buildType = variant.buildType.name
@@ -121,15 +127,10 @@ android {
 
         variant.outputs.all{
             if(buildType == "release"){
-                if (variant.name.contains("xiaolanlaia")){
-                    variant.getPackageApplicationProvider().get().outputDirectory = new File(project.rootDir.absolutePath + "/apks/${buildType}/$createTime")
-                    fileName = "xiaolanlaia_v${defaultConfig.versionName}_${createTime}_${buildType}.apk"
-                    it.outputFileName = fileName
-                }else if (variant.name.contains("niuniu")){
-                    variant.getPackageApplicationProvider().get().outputDirectory = new File(project.rootDir.absolutePath + "/apks/${buildType}/$createTime")
-                    fileName = "niuniu_v${defaultConfig.versionName}_${createTime}_${buildType}.apk"
-                    it.outputFileName = fileName
-                }
+                variant.getPackageApplicationProvider().get().outputDirectory = new File(project.rootDir.absolutePath + "/apks/${buildType}/$createTime")
+                fileName = "${variant.name}_v${defaultConfig.versionName}_${createTime}_${buildType}.apk"
+                it.outputFileName = fileName
+
             }
         }
 
