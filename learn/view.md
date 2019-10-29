@@ -79,13 +79,26 @@ View是所有控件的基类，View和ViewGroup相互嵌套组成View树结构
 1、三个方法
     1.1、dispatchTouchEvent
         用来进行事件分发，如果事件能够传递给当前View，那么会调用此方法，
-        返回结果受当前View的onTouchEvent和下级的disPatchTouchEvent方法的影响
-        表示是否消耗当前事件
+        返回结果受当前View的onTouchEvent和下级的disPatchTouchEvent方
+        法的影响表示是否消耗当前事件
     1.2、onInterceptTouchEvent
-        在上述方法内部调用，用来判断是否拦截某个事件，如果View拦截了某个事件，
-        那么在同一个时间序列当中，此方法不会被再次调用，返回结果便是是否拦截当前事件。
+        在上述方法内部调用，用来判断是否拦截某个事件，如果View拦截了某个
+        事件，那么在同一个时间序列当中，此方法不会被再次调用，返回结果便
+        是是否拦截当前事件。
     1.3、onTouchEvent
-    在dispatchTouchEvent方法中调用，用来处理事件，返回结果表示是否消耗当前事件，
-    如果不消耗，则在同一事件序列中，当前View无法再次接受事件
+        在dispatchTouchEvent方法中调用，用来处理事件，返回结果表示是否消
+        耗当前事件，如果不消耗，则在同一事件序列中，当前View无法再次接受事件
+```
+
+三、View的工作原理
+
+```
+1、ViewRoot
+
+    ViewRoot对应于ViewRootImpl类，是连接WindowManager和DecorView的纽带，
+    View的三大流程均是通过ViewRoot来完成。在ActivityThread中，当Activity
+    被创建完毕后，会将DecorView添加到Window中，同时创建ViewRootImpl对象，
+    并将ViewRootImpl对象和DecorView建立关联。
+    
 ```
 
