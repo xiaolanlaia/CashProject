@@ -20,6 +20,7 @@
 ` app:addTextChangedListener="@{vm.bindBankNumTextListener}" `
 ## 13. 动态权限申请
 ## 14. JSONObject和JSONArray
+一个
 ## 15. String字符串的处理
 
 ``` kotlin
@@ -39,7 +40,7 @@ simpleDateFormat.format(newDate)
 ## 18. Activity 与 Context的关系
 ```
 1、Context和Activity关系
- Context是个抽象类，通过类的结构可以看到：Activity、Service、Application都是Context的子类；
+Context是个抽象类，通过类的结构可以看到：Activity、Service、Application都是Context的子类；
 
 从Android系统的角度来理解：Context是一个场景，描述的是一个应用程序环境的信息，即上下文，代表与操作系统的交互的一种过程。
 
@@ -59,8 +60,23 @@ B、从activity得到context，调用了方法：
 ```
 ## 19. TitleWithContentActivity带多个参数跳转
 ## 20. fragment的使用
-## 21. 重写super和不重写super的区别
+## 21. super和this
+```
+this:
+1，使用this调用本类中的属性。
+2，使用this调用构造方法。
+3，表示当前对象
+
+super:
+1，在子类中调用父类的属性和方法
+2，在子类中调用父类的构造方法。
+
+```
 ## 22. Mine模块的栏目点击事件
+
+```
+1 RxBinding
+```
 ## 23. 强制更新版本的字符串对比
 ## 24. 设置控件在屏幕居中（获取屏幕参数）
 ```kotlin
@@ -75,14 +91,40 @@ otherTV.layoutParams = mLayoutParams1
 
 ```
 ## 25. 快捷键
-## 26. 多渠道打包
+## 26. Gradle配置
 ```
-1. Gradle配置
-2. 签名配置
-3. 输出包配置
-4. 不同渠道不同资源配置
+一、 productFlavors
+
+1、创建不同的产品
+    1.1、创建不同产品并分配专有属性
+        //程序包名
+        applicationId 
+        //不同渠道号
+        manifestPlaceholders
+        versionName
+        versionCode
+    
+2、设置不同代码引用专有资源
+
+    在src文件夹下创建同名资源文件夹  
+    
+3、不同产品引入不同包
+
+    //不同产品引入不同的包
+    ACompile "com.android.support:appcompat-v7:26.+"
+    BCompile "com.android.support.constraint:constraint-layout:1.0.2"
+4、
+
+二、签名配置
+
+1、signingConfigs
+
+三、输出包配置
+1、
+四、不同渠道不同资源配置
 ```
 ## 27. 打包输出配置
+
 ## 28. 全局配置
 ## 29. 混淆
 ```
@@ -151,14 +193,30 @@ px = 1 x  445 / 160  = 2.78
 
 ## 32. 注解
 ## 33. 反射
+```java
+try {
+	Field field = ValueAnimator.class.getDeclaredField("sDurationScale");
+	field.setAccessible(true);
+	Log.d("__startAnimator",""+field.getFloat(null));
+
+} catch (NoSuchFieldException e) {
+	e.printStackTrace();
+} catch (IllegalAccessException e) {
+	e.printStackTrace();
+}
+```
 ## 34. 热修复
 ## 35. 插件化
 ## 36. 组件化
 ## 37. 内存泄漏
 ## 38. 设计模式
-## 39.EditText属性
+## 39. EditText属性
 ```
 android:inputType="number"
 
 ```
+
+## 40 缩小spk和应用安装后占用的内存
+## 41 修改环信界面
+## 42 自定义封装成库
 

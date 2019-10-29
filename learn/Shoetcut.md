@@ -19,3 +19,6 @@ F12
 ## 上/下一个方法
 Alt + 上/下箭头
 
+## 上一次編輯
+ctrl+alt+left/right
+
