@@ -93,12 +93,32 @@ View是所有控件的基类，View和ViewGroup相互嵌套组成View树结构
 三、View的工作原理
 
 ```
-1、ViewRoot
+1、当点击事件产生时，首先传递顺序： Activity -> Window -> DecorView。
+顶级View接受事件后，再按照事件分发机制去分发事件。当所有View都不处理事件，
+这个事件最终会传递给Activity。
+
+问题1：为什么点击事件首先传递到Activity?
+
+
+2、ViewRoot
 
     ViewRoot对应于ViewRootImpl类，是连接WindowManager和DecorView的纽带，
     View的三大流程均是通过ViewRoot来完成。在ActivityThread中，当Activity
     被创建完毕后，会将DecorView添加到Window中，同时创建ViewRootImpl对象，
     并将ViewRootImpl对象和DecorView建立关联。
+    
+3、MeasureSpec
+     MeasureSpec封装了从父级传递到子级的布局要求。每个MeasureSpec代表对
+     宽度或高度的要求。MeasureSpec由大小和模式组成。有三种可能的模式:
+     
+     (1)UNSPECIFIED
+     父View没有对子View施加任何约束。它可以是任意大小。
+     
+     (2)EXACTLY
+     父View已经确定了子View的确切尺寸。
+     
+     (3)AT_MOST
+     子View可以根据需要的大小而定，最大可以达到指定的大小。
     
 ```
 
