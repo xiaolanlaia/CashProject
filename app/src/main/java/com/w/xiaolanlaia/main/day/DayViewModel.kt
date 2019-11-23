@@ -7,21 +7,37 @@ import android.icu.util.Calendar
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.TextView
-import androidx.annotation.IntRange
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cn.qqtheme.framework.picker.OptionPicker
 import cn.qqtheme.framework.widget.WheelView
 import com.w.xiaolanlaia.R
+import com.w.xiaolanlaia.common.Constants
+import com.w.xiaolanlaia.common.MediatorActivity
 import com.w.xiaolanlaia.entity.FragmentOneBean
+import org.jetbrains.anko.startActivity
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.util.*
-
-
 
 @SuppressLint("SimpleDateFormat")
 class DayViewModel (val repository: DayRepository) : ViewModel(){
+
+    companion object {
+
+        const val DAY = 0
+        const val WEEK = 1
+        const val MONTH = 2
+        const val YEAR = 3
+        const val ALL = 4
+        const val AUTO = 5
+
+        const val DAY_TEXT = "天"
+        const val WEEK_TEXT = "周"
+        const val MONTH_TEXT = "月"
+        const val YEAR_TEXT = "年"
+        const val ALL_TEXT = "全部"
+        const val AUTO_TEXT = "自定义"
+    }
 
     val pay = MutableLiveData<Double>()
     val transferVisible = MutableLiveData<Boolean>()
@@ -29,13 +45,14 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
     var list = MutableLiveData<List<FragmentOneBean>>()
     var periodText = MutableLiveData<String>()
     var addDay = 0
+    var dayType = 0
     var selectPickerPosition = 0
     var list1 = mutableListOf<FragmentOneBean>()
 
 
     init {
         initData()
-        periodText.value = getDayDate()
+        periodText.value = calculateDay(0)
         transferVisible.value = false
     }
 
@@ -80,38 +97,41 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
     val cashDayClick = OnClickListener {
         when (it.id) {
 
+
+
             R.id.toolbar_transfer -> {
 
                 transferVisible.value = !transferVisible.value!!
 
             }
 
+            R.id.add_iv -> {
+
+
+                it.context.startActivity<MediatorActivity>(Pair(Constants.SP.MEDIATOR_ACTIVITY_TYPE,MediatorActivity.TYPE_ADD))
+            }
+
             R.id.left_ward_tv ->{
 
-                addDay --
-
-                transferPeriodDate()
+                dayType(false)
 
             }
 
             R.id.right_ward_tv ->{
 
-                addDay ++
-
-                transferPeriodDate()
+                dayType(true)
 
             }
 
             R.id.period_text ->{
                 val arrayList = mutableListOf<String>()
 
-                arrayList.add("天")
-                arrayList.add("周")
-                arrayList.add("月")
-                arrayList.add("季")
-                arrayList.add("年")
-                arrayList.add("全部")
-                arrayList.add("自定义")
+                arrayList.add(DAY_TEXT)
+                arrayList.add(WEEK_TEXT)
+                arrayList.add(MONTH_TEXT)
+                arrayList.add(YEAR_TEXT)
+                arrayList.add(ALL_TEXT)
+                arrayList.add(AUTO_TEXT)
 
                 showPicker(it,arrayList.toTypedArray())
             }
@@ -119,37 +139,71 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         }
     }
 
-    private fun transferPeriodDate() {
+    fun dayType(type : Boolean){
 
-        when (selectPickerPosition) {
+        when(dayType) {
 
-            0 -> {
-                periodText.value = getDayDate()
-            }
-            1 -> {
-                periodText.value = getWeekDate()
+            DAY -> {
 
-            }
-            2 -> {
-                periodText.value = getMonthDate()
+                if (type){
+                    periodText.value = calculateDay(++addDay)
+                }else{
+                    periodText.value = calculateDay(--addDay)
+                }
 
             }
-            3 -> {
-                periodText.value = getQuarterDate()
+
+            WEEK -> {
+
+                if (type){
+                    periodText.value = calculateWeek(++addDay)
+                }else{
+                    periodText.value = calculateWeek(--addDay)
+                }
 
             }
-            4 -> {
-                periodText.value = getYearDate()
+
+            MONTH -> {
+
+                if (type){
+                    periodText.value = getMonthDate(++addDay)
+                }else{
+                    periodText.value = getMonthDate(--addDay)
+                }
 
             }
-            5 -> {
-                periodText.value = getAllDate()
+
+            YEAR -> {
+
+                if (type){
+                    periodText.value = calculateYear(++addDay)
+                }else{
+                    periodText.value = calculateYear(--addDay)
+                }
 
             }
-            6 -> {
-                periodText.value = getCustomDate()
+
+            ALL -> {
+
+//                if (type){
+//                    periodText.value = calculateDay(++addDay)
+//                }else{
+//                    periodText.value = calculateDay(--addDay)
+//                }
 
             }
+
+            AUTO -> {
+
+//                if (type){
+//                    periodText.value = calculateDay(++addDay)
+//                }else{
+//                    periodText.value = calculateDay(--addDay)
+//                }
+
+            }
+
+
         }
     }
 
@@ -179,28 +233,42 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
                 selectPickerPosition = index
 
                 when(item){
-                    "天" ->{
-                        view.text = getDayDate()
+
+                    DAY_TEXT ->{
+
+                        dayType = DAY
+                        view.text = calculateDay(0)
 
                     }
-                    "周" ->{
 
-                        view.text = getWeekDate()
+                    WEEK_TEXT ->{
+
+                        dayType = WEEK
+                        view.text = calculateWeek(0)
 
                     }
-                    "月" ->{
-                        view.text = getMonthDate()
+
+                    MONTH_TEXT ->{
+
+                        dayType = MONTH
+                        view.text = getMonthDate(0)
                     }
-                    "季" ->{
-                        view.text = getQuarterDate()
+
+                    YEAR_TEXT ->{
+
+                        dayType = YEAR
+                        view.text = calculateYear(0)
                     }
-                    "年" ->{
-                        view.text = getYearDate()
-                    }
-                    "全部" ->{
+
+                    ALL_TEXT ->{
+
+                        dayType = ALL
                         view.text = item
                     }
-                    "自定义" ->{
+
+                    AUTO_TEXT ->{
+
+                        dayType = AUTO
                         view.text = item
                     }
                 }
@@ -211,84 +279,84 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
     /**
      * 获取当前日期
      */
-    fun getDayDate() : String{
+    private fun calculateDay(addDays : Int) : String{
 
-        val time = LocalDateTime.now()
-        val time2 = time.minusDays(1)
+        val calendar = Calendar.getInstance()
 
+        calendar.add(Calendar.DATE, addDays) //计算
+
+        val date = calendar.time
 
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
 
-        val date = Date(System.currentTimeMillis() + (addDay * 1000 * 60 * 60 * 24))
-
-        return "${simpleDateFormat.format(date)}(天)"
+        return simpleDateFormat.format(date)
 
     }
 
     /**
      * 获取周区间日期
      */
-    fun getWeekDate(): String {
+    private fun calculateWeek(addWeeks: Int) : String{
 
-        val cal = Calendar.getInstance()
-        cal.time = Date()
-
-        //得到今天与星期一相隔几天
-        var w = cal.get(Calendar.DAY_OF_WEEK) - 2
-        if (w < 0)
-            w = 0
-
-        //将天数转换成毫秒数
-        val dayToMill = w * 1000 * 60 * 60 * 24
-
-        //周一的日期
+        val calendar = Calendar.getInstance()
         val simpleDateFormat = SimpleDateFormat("yyyy.MM.dd")
-        val date = Date(System.currentTimeMillis() - dayToMill + 7 * addDay * 1000 * 60 * 60 * 24 )
-        val firstDay = simpleDateFormat.format(date)
 
-        //周日的日期
-        val simpleDateFormat2 = SimpleDateFormat("dd")
-        val date2 = Date(System.currentTimeMillis() + (6 - w + 7 * addDay) * 1000 * 60 * 60 * 24)
-        val lastDay = simpleDateFormat2.format(date2)
+        //一星期开始的第一天
+        calendar.set(Calendar.DAY_OF_WEEK,2) //计算
 
-        //组装日期
-        return "$firstDay - $lastDay(周)"
+        calendar.add(Calendar.DATE,addWeeks * 7)
+
+        val firstDate = calendar.time
+
+
+
+        //一星期的最后一天
+        val lastCalendar = Calendar.getInstance()
+
+        lastCalendar.set(Calendar.DAY_OF_WEEK,1) //计算
+
+        lastCalendar.add(Calendar.DATE,addWeeks * 7 + 7)
+
+        val lastDate = lastCalendar.time
+
+        return "${simpleDateFormat.format(firstDate)} - ${simpleDateFormat.format(lastDate)}"
     }
+
 
     /**
      * 获取月区间日期
      */
-    fun getMonthDate() : String{
+    fun getMonthDate(addMonth : Int) : String{
 
+        val calendar = Calendar.getInstance()
 
-        val c = java.util.Calendar.getInstance()
-        return "${c.get(java.util.Calendar.YEAR)}.${c.get(java.util.Calendar.MONTH) + 1}  (月)"
+//        calendar.set(Calendar.MONTH, 1)
+        calendar.add(Calendar.MONTH, addMonth) //计算
 
-    }
-
-    /**
-     * 季度期间日期
-     */
-    fun getQuarterDate() : String{
+        val date = calendar.time
 
         val simpleDateFormat = SimpleDateFormat("yyyy.MM")
-        val date = Date(currentQuarterStartTime!!.time)
-        val firstDay = simpleDateFormat.format(date)
 
-        val simpleDateFormat2 = SimpleDateFormat("MM")
-        val date2 = Date(currentQuarterEndTime!!.time)
-        val lastDay = simpleDateFormat2.format(date2)
+        return simpleDateFormat.format(date)
 
-        return "$firstDay - $lastDay(季)"
     }
+
 
     /**
      * 获取年份
      */
-    fun getYearDate() : String{
-        val c = java.util.Calendar.getInstance()
-        val currentYear = c.get(java.util.Calendar.YEAR)
-        return "$currentYear(年)"
+    fun calculateYear(addYear : Int) : String{
+
+        val calendar = Calendar.getInstance()
+
+//        calendar.set(Calendar.MONTH, 1)
+        calendar.add(Calendar.YEAR, addYear) //计算
+
+        val date = calendar.time
+
+        val simpleDateFormat = SimpleDateFormat("yyyy")
+
+        return simpleDateFormat.format(date)
     }
 
     /**

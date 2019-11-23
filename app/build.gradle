@@ -95,7 +95,6 @@ android {
 
         release {
             minifyEnabled false
-            shrinkResources false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -109,6 +108,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // 移除lint检测的error
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 
     dataBinding{
@@ -156,6 +161,8 @@ dependencies {
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["aspectjrt"]
     implementation rootProject.ext.dependencies["aop-arms"]
+    //anko
+    implementation rootProject.ext.dependencies["anko"]
 
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["runner"]

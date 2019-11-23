@@ -11,14 +11,14 @@ import android.view.View
  */
 
 
-object SizeUtil{
+object SizeUtil {
 
-    fun getStatusHeight(context: Context) : Int{
+    fun getStatusHeight(context: Context): Int {
 
-        val statusHeightId = context.applicationContext.resources.getIdentifier("status_bar_height","dimen","android")
+        val statusHeightId = context.applicationContext.resources.getIdentifier("status_bar_height", "dimen", "android")
         return context.applicationContext.resources.getDimensionPixelSize(statusHeightId)
     }
-
+}
     /**
      * 使View适配状态栏
      *
@@ -32,4 +32,3 @@ object SizeUtil{
         layoutParams.height += statusHeight
         this.layoutParams = lp
     }
-}

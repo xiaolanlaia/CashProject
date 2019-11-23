@@ -7,9 +7,13 @@
     <string name="tv_money_default_text">¥---</string>
     <string name="pay_text">支出</string>
     <string name="income_text">收入</string>
-    <string name="project_text">Project</string>
-    <string name="time_text">Time</string>
-    <string name="money_text">Money</string>
-    <string name="location_text">Location</string>
+    <string name="project_text">项目</string>
+    <string name="time_text">时间</string>
+    <string name="money_text">金额</string>
+    <string name="location_text">位置</string>
     <string name="toolbar_title_text">标题</string>
+    <string name="default_text">----</string>
+    <string name="add_project">项目</string>
+    <string name="et_default_text">请输入</string>
+    <string name="save_tv">保存</string>
 </resources>

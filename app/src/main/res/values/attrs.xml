@@ -5,8 +5,18 @@
 
         <attr name="toolbar_style" format="integer">
             <enum name="day" value="0"/>
+            <enum name="title_and_back" value="1"/>
         </attr>
         
         <attr name="toolbar_title" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="RowLayout">
+        <attr name="row_layout_style" format="integer">
+            <enum name="normal" value="0"/>
+        </attr>
+
+        <attr name="left_text" format="string"/>
+
     </declare-styleable>
 </resources>

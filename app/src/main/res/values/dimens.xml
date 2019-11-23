@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--dp-->
-    <dimen name="dp_zero">0dp</dimen>
-    <dimen name="dp_two">2dp</dimen>
-    <dimen name="dp_ten">10dp</dimen>
-    <dimen name="dp_twenty">20dp</dimen>
-    <dimen name="dp_forty">40dp</dimen>
-    <dimen name="dp_two_hundred">200dp</dimen>
+    <dimen name="dp_0">0dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_25">25dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_200">200dp</dimen>
 
 
 
     <!--sp-->
-    <dimen name="toolbar_text_size">18sp</dimen>
+    <dimen name="sp_18">18sp</dimen>
+    <dimen name="sp_15">15sp</dimen>
+
+
+
 
 </resources>

@@ -11,7 +11,9 @@ import com.w.xiaolanlaia.BuildConfig
  */
 internal interface Constants{
 
-    object SP{
+    object SP {
+
+        const val MEDIATOR_ACTIVITY_TYPE = "mediator_activity_type"
 
         const val PAY = "pay"
         const val INCOME = "income"

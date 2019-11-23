@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable name="vm" type="com.w.xiaolanlaia.main.add.AddViewModel"/>
+    </data>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
+                android:id="@+id/project_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="normal"
+                app:left_text="@string/project_text"
+        />
+
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
+                android:id="@+id/money_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="normal"
+                app:left_text="@string/money_text"
+        />
+
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
+                android:id="@+id/time_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="normal"
+                app:left_text="@string/time_text"
+        />
+
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
+                android:id="@+id/local_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="normal"
+                app:left_text="@string/location_text"
+        />
+
+
+
+    </LinearLayout>
+</layout>
