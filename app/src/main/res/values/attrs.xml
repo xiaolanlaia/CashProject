@@ -5,7 +5,8 @@
 
         <attr name="toolbar_style" format="integer">
             <enum name="day" value="0"/>
-            <enum name="title_and_back" value="1"/>
+            <enum name="mediator_toolbar" value="1"/>
+            <enum name="title_and_back" value="2"/>
         </attr>
         
         <attr name="toolbar_title" format="string"/>

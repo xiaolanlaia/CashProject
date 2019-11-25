@@ -9,7 +9,8 @@
             android:id="@+id/mediator_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:toolbar_style="title_and_back"
+            app:toolbar_style="mediator_toolbar"
+
     />
 
     <FrameLayout

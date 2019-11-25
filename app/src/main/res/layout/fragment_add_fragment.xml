@@ -1,0 +1,65 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="@drawable/stroke_round_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_15"
+>
+
+    <com.w.xiaolanlaia.util.widget.RowLayout
+
+            android:id="@+id/project_num_row"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:row_layout_style="normal"
+            app:left_text="@string/project_num_text"
+    />
+
+    <com.w.xiaolanlaia.util.widget.RowLayout
+
+            android:id="@+id/time_row"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:row_layout_style="normal"
+            app:left_text="@string/time_text"
+    />
+
+    <com.w.xiaolanlaia.util.widget.RowLayout
+
+            android:id="@+id/local_row"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:row_layout_style="normal"
+            app:left_text="@string/location_text"
+    />
+
+    <com.w.xiaolanlaia.util.widget.RowLayout
+
+            android:id="@+id/project_row"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:row_layout_style="normal"
+            app:left_text="@string/project_text"
+    />
+
+    <com.w.xiaolanlaia.util.widget.RowLayout
+
+            android:id="@+id/type_row"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:row_layout_style="normal"
+            app:left_text="@string/type_text"
+    />
+
+    <com.w.xiaolanlaia.util.widget.RowLayout
+
+            android:id="@+id/money_row"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:row_layout_style="normal"
+            app:left_text="@string/money_text"
+    />
+
+</LinearLayout>

@@ -15,6 +15,7 @@
                 android:textColor="@color/color_333333"
                 android:textSize="@dimen/sp_15"
                 android:gravity="center"
+
         />
 
         <EditText

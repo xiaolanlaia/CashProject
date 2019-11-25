@@ -26,7 +26,8 @@ class AppToolbar : RelativeLayout{
     private lateinit var view : View
 
     private lateinit var title : TextView
-    private lateinit var rightTv : TextView
+
+    private lateinit var saveTv : TextView
 
     private lateinit var back : ImageView
 
@@ -37,6 +38,8 @@ class AppToolbar : RelativeLayout{
     private lateinit var status : View
 
     private var lastTime = 0L
+
+    private var style = 0
 
 
     constructor(context : Context?) : super(context)
@@ -50,22 +53,21 @@ class AppToolbar : RelativeLayout{
         back = view.findViewById(R.id.toolbar_back)
         addIv = view.findViewById(R.id.add_iv)
         transfer = view.findViewById(R.id.toolbar_transfer)
-        rightTv = view.findViewById(R.id.right_tv)
+        saveTv = view.findViewById(R.id.save_tv)
 
 
         //获取自定义属性
         val typeArray = context.obtainStyledAttributes(attrs,R.styleable.AppToolbar)
-        val titleText = typeArray.getString(R.styleable.AppToolbar_toolbar_title)
 
-        title.text = titleText
-
-        val style = typeArray.getInt(R.styleable.AppToolbar_toolbar_style,0)
+        style = typeArray.getInt(R.styleable.AppToolbar_toolbar_style,0)
 
         when(style){
 
             0 -> dayToolbar()
 
             1 -> mediatorToolbar()
+
+            2 -> titleAndBack()
 
 
         }
@@ -89,6 +91,10 @@ class AppToolbar : RelativeLayout{
 
     }
 
+    private fun titleAndBack(){
+        back.visibility = View.VISIBLE
+        title.visibility = View.VISIBLE
+    }
 
     private fun dayToolbar(){
         back.visibility = View.VISIBLE
@@ -100,8 +106,12 @@ class AppToolbar : RelativeLayout{
     private fun mediatorToolbar(){
         back.visibility = View.VISIBLE
         title.visibility = View.VISIBLE
-        rightTv.visibility = View.VISIBLE
+        saveTv.visibility = View.VISIBLE
 
+
+    }
+
+    fun setTitleStyle(style : Int){
 
     }
 

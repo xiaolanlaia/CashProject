@@ -17,8 +17,8 @@
     <!--sp-->
     <dimen name="sp_18">18sp</dimen>
     <dimen name="sp_15">15sp</dimen>
-
-
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
 
 
 </resources>
