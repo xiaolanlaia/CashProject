@@ -14,7 +14,8 @@
 
     <declare-styleable name="RowLayout">
         <attr name="row_layout_style" format="integer">
-            <enum name="normal" value="0"/>
+            <enum name="right_edit" value="0"/>
+            <enum name="right_text" value="1"/>
         </attr>
 
         <attr name="left_text" format="string"/>

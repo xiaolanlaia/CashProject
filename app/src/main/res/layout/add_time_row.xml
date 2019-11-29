@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp_30"
+                android:layout_marginEnd="@dimen/dp_30"
+
+        >
+
+            <TextView
+                    android:text="时间"
+                    android:gravity="center"
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/color_333333"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+
+            />
+            <LinearLayout
+                    android:id="@+id/time"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:paddingStart="@dimen/dp_20"
+                    android:paddingEnd="@dimen/dp_20"
+                    android:gravity="center"
+
+
+
+            >
+                <TextView
+                        android:id="@+id/time_row_year"
+                        tools:text="2019"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:gravity="center"
+                />
+                <TextView
+                        android:text="年"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_333333"
+                        android:gravity="center"
+                />
+                <TextView
+                        android:id="@+id/time_row_month"
+                        tools:text="11"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:gravity="center"
+                />
+
+                <TextView
+                        android:text="月"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_333333"
+                        android:gravity="center"
+                />
+
+                <TextView
+                        android:id="@+id/time_row_day"
+                        tools:text="29"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:gravity="center"
+                />
+                <TextView
+                        android:text="日"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_333333"
+                        android:gravity="center"
+                />
+
+                <TextView
+                        android:id="@+id/time_row_hour"
+                        tools:text="16"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:gravity="center"
+                />
+                <TextView
+                        android:text="时"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_333333"
+                        android:gravity="center"
+                />
+
+                <TextView
+                        android:id="@+id/time_row_minute"
+                        tools:text="43"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:gravity="center"
+                />
+                <TextView
+                        android:text="分"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_333333"
+                        android:gravity="center"
+                />
+
+            </LinearLayout>
+        </LinearLayout>
+    <View android:background="@color/color_bottom_line"
+          android:layout_width="match_parent"
+          android:layout_marginStart="@dimen/dp_30"
+          android:layout_marginEnd="@dimen/dp_30"
+          android:layout_height="@dimen/dp_1"
+          android:layout_alignParentBottom="true"
+    />
+
+
+</RelativeLayout>

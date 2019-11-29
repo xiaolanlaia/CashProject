@@ -64,12 +64,6 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
                 toast("kk")
             }
 
-            R.id.btn -> {
-
-                toast("kk")
-                Log.d("__query_all","${sDao.getAllByDateDesc()}")
-
-            }
         }
     }
 
@@ -100,28 +94,30 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
     }
 
 
-    val timeTextChangeListener = object : SimpleTextWatch(){
-        override fun afterTextChanged(s: Editable?) {
-            sTime.value = s.toString()
-
-        }
-    }
-
     val localTextChangeListener = object : SimpleTextWatch(){
         override fun afterTextChanged(s: Editable?) {
             sLocation.value = s.toString()
         }
     }
-    val projectTextChangeListener = object : SimpleTextWatch(){
+
+    val sortTextChangeListener = object : SimpleTextWatch(){
         override fun afterTextChanged(s: Editable?) {
             sProject.value = s.toString()
         }
     }
+
+    val subdivisionTextChangeListener = object : SimpleTextWatch(){
+        override fun afterTextChanged(s: Editable?) {
+            sProject.value = s.toString()
+        }
+    }
+
     val typeTextChangeListener = object : SimpleTextWatch(){
         override fun afterTextChanged(s: Editable?) {
             sType.value = s.toString()
         }
     }
+
     val moneyTextChangeListener = object : SimpleTextWatch(){
         override fun afterTextChanged(s: Editable?) {
             sMoney.value = s.toString()

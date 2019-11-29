@@ -7,7 +7,8 @@
     <string name="tv_money_default_text">¥---</string>
     <string name="pay_text">支出</string>
     <string name="income_text">收入</string>
-    <string name="project_text">项目</string>
+    <string name="sort_text">类别</string>
+    <string name="subdivision_text">细分</string>
     <string name="time_text">时间</string>
     <string name="money_text">金额</string>
     <string name="location_text">位置</string>
