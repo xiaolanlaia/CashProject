@@ -1,4 +1,4 @@
-package com.w.xiaolanlaia.main.add
+package com.w.xiaolanlaia.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

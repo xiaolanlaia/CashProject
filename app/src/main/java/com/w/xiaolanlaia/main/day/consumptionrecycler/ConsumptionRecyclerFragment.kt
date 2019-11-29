@@ -57,11 +57,15 @@ class ConsumptionRecyclerFragment : BaseMVVMFragment<FragmentConsumptionRecycler
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        bindViews.vm = vm
         val recyclerAdapter = FragmentOneAdapter()
         bindViews.fragmentOneRecycler.adapter = recyclerAdapter
 
 
         vm.list.observe(this, Observer {
+
+
             recyclerAdapter.updateList(type,it as  MutableList<FragmentOneBean>)
 
         })

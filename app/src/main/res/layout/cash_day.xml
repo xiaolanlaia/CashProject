@@ -74,12 +74,15 @@
             />
             <TextView
                     android:id="@+id/tv_accountant"
-                    android:text="@string/tv_money_default_text"
+                    android:text="@{vm.totalCalculateValue}"
+                    android:textColor="@color/color_total_calculate"
+                    android:textSize="@dimen/sp_24"
+                    android:textStyle="bold"
+                    android:hint="@string/tv_money_default_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:gravity="center"
-                    style="@style/cash_day_black"/>
+                    android:gravity="center"/>
 
         </LinearLayout>
         <LinearLayout
@@ -107,7 +110,8 @@
                 />
                 <TextView
                         android:id="@+id/tv_pay"
-                        android:text="@string/tv_money_default_text"
+                        android:text="@{vm.expendValue}"
+                        android:hint="@string/tv_money_default_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -135,7 +139,8 @@
                 />
                 <TextView
                         android:id="@+id/tv_income"
-                        android:text="@string/tv_money_default_text"
+                        android:text="@{vm.incomeValue}"
+                        android:hint="@string/tv_money_default_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

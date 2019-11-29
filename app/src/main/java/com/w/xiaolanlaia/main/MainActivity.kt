@@ -1,5 +1,6 @@
 package com.w.xiaolanlaia.main
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -35,6 +36,7 @@ class MainActivity : BaseActivity() {
 
 
     }
+
 
     override fun onBackPressed() {
         if (System.currentTimeMillis() - lastTime > 1000L){

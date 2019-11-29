@@ -3,7 +3,7 @@ package com.w.xiaolanlaia.common
 import android.view.View
 import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.base.BaseActivity
-import com.w.xiaolanlaia.main.add.AddFragment
+import com.w.xiaolanlaia.add.AddFragment
 import kotlinx.android.synthetic.main.activity_mediator.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import kotlinx.android.synthetic.main.include_toolbar.view.*
@@ -40,7 +40,7 @@ class MediatorActivity : BaseActivity(){
             TYPE_ADD -> {
 
                 toolbar_title.text = "新增"
-                translation.replace(R.id.mediator_content,AddFragment(),"addFragment").commit()
+                translation.replace(R.id.mediator_content, AddFragment(),"addFragment").commit()
 
 
 

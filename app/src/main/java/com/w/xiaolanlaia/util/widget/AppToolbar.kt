@@ -141,6 +141,11 @@ class AppToolbar : RelativeLayout{
         addIv.setOnClickListener(listener)
     }
 
+    fun setSaveOnClickListener(listener: OnClickListener){
+
+        saveTv.setOnClickListener(listener)
+    }
+
 
     companion object{
 
@@ -161,6 +166,16 @@ class AppToolbar : RelativeLayout{
         fun setAddOnClick(view : AppToolbar,listener : OnClickListener){
             view.setAddOnClickListener(listener)
         }
+        /**
+         * 保存按钮绑定点击事件
+         */
+        @BindingAdapter("saveOnClick")
+        @JvmStatic
+        fun setSaveOnClick(view : AppToolbar,listener : OnClickListener){
+            view.setSaveOnClickListener(listener)
+        }
+
+
     }
 
 

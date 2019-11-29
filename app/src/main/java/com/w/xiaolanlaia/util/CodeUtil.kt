@@ -16,7 +16,7 @@ import com.w.xiaolanlaia.common.MyApplication
 object CodeUtil {
 
     fun toast(str:String){
-        Toast.makeText(MyApplication.context,str,Toast.LENGTH_SHORT).show()
+        ToastHelper.show(str)
     }
 }
 

@@ -65,6 +65,7 @@
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/blue_corner_background"
                 android:visibility="gone"
+                android:clickable="true"
                 />
 
     </RelativeLayout>

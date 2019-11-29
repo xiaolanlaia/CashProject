@@ -1,0 +1,69 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "b24ed9bdd66cb33c13504c5fe834c0fe",
+    "entities": [
+      {
+        "tableName": "projectEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`projectID` INTEGER PRIMARY KEY AUTOINCREMENT, `projectNum` TEXT, `projectTime` TEXT, `projectLocation` TEXT, `project` TEXT, `projectType` TEXT, `projectMoney` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "projectID",
+            "columnName": "projectID",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "projectNum",
+            "columnName": "projectNum",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "projectTime",
+            "columnName": "projectTime",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "projectLocation",
+            "columnName": "projectLocation",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "project",
+            "columnName": "project",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "projectType",
+            "columnName": "projectType",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "projectMoney",
+            "columnName": "projectMoney",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "projectID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b24ed9bdd66cb33c13504c5fe834c0fe\")"
+    ]
+  }
+}

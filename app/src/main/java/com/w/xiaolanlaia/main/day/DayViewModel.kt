@@ -3,6 +3,7 @@ package com.w.xiaolanlaia.main.day
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
+import android.icu.math.BigDecimal
 import android.icu.util.Calendar
 import android.view.View
 import android.view.View.OnClickListener
@@ -49,6 +50,10 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
     var selectPickerPosition = 0
     var list1 = mutableListOf<FragmentOneBean>()
 
+    var incomeValue = MutableLiveData<String>()
+    var expendValue = MutableLiveData<String>()
+    var totalCalculateValue = MutableLiveData<String>()
+
 
     init {
         initData()
@@ -90,14 +95,48 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         list1.add(1,fragmentOneBean1)
 
 
+        val expend = list1.filter { it.type == 0}
+
+        expend.forEachIndexed { index, item ->
+
+            totalExpend = calculateMoney(item.money).toString()
+
+
+        }
+
+        val income = list1.filter { it.type == 1 }
+
+        income.forEachIndexed { index, item ->
+
+            totalIncomne = calculateMoney(item.money).toString()
+        }
+
+        expendValue.value = totalExpend
+
+        incomeValue.value = totalIncomne
+
+
+        totalCalculateValue.value = subtract(totalIncomne.toDouble(),totalExpend.toDouble()).toString()
 
         list.value = list1
     }
 
+
+    var totalExpend = ""
+    var totalIncomne = ""
+    fun calculateMoney(v1: Double?): Double {
+        val b1 = BigDecimal(v1.toString())
+        return b1.toDouble()
+    }
+
+    fun subtract(v1: Double, v2: Double): Double {
+        val b1 = BigDecimal(v1.toString())
+        val b2 = BigDecimal(v2.toString())
+        return b1.subtract(b2).toDouble()
+    }
+
     val cashDayClick = OnClickListener {
         when (it.id) {
-
-
 
             R.id.toolbar_transfer -> {
 
@@ -330,7 +369,6 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
 
         val calendar = Calendar.getInstance()
 
-//        calendar.set(Calendar.MONTH, 1)
         calendar.add(Calendar.MONTH, addMonth) //计算
 
         val date = calendar.time
@@ -349,7 +387,6 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
 
         val calendar = Calendar.getInstance()
 
-//        calendar.set(Calendar.MONTH, 1)
         calendar.add(Calendar.YEAR, addYear) //计算
 
         val date = calendar.time
@@ -373,69 +410,5 @@ class DayViewModel (val repository: DayRepository) : ViewModel(){
         return "k"
 
     }
-
-    private val longSdf = SimpleDateFormat("yyyy-MM-dd")
-    private val shortSdf = SimpleDateFormat("yyyy-MM-dd")
-    /**
-     * 当前季度的开始时间，即2012-01-1 00:00:00
-     * @return
-     */
-    private val currentQuarterStartTime: Date?
-        get() {
-            val c = java.util.Calendar.getInstance()
-            val currentMonth = c.get(java.util.Calendar.MONTH) + 1
-            var quarterStart: Date? = null
-            try {
-                when (currentMonth) {
-                    in 1..3 -> c.set(currentMonth, 0)
-                    in 4..6 -> c.set(currentMonth, 3)
-                    in 7..9 -> c.set(currentMonth, 4)
-                    in 10..12 -> c.set(currentMonth, 9)
-                }
-                c.set(java.util.Calendar.DATE, 1)
-                println(c.time)
-                quarterStart = longSdf.parse(shortSdf.format(c.time) + " 00:00:00")
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            return quarterStart
-        }
-
-    /**
-     * 当前季度的结束时间，即2012-03-31 23:59:59
-     * @return
-     */
-    private val currentQuarterEndTime: Date?
-        get() {
-            val c = java.util.Calendar.getInstance()
-            val currentMonth = c.get(java.util.Calendar.MONTH) + 1
-            var quarterEnd: Date? = null
-            try {
-                when (currentMonth) {
-                    in 1..3 -> {
-                        c.set(java.util.Calendar.MONTH, 2)
-                        c.set(java.util.Calendar.DATE, 31)
-                    }
-                    in 4..6 -> {
-                        c.set(java.util.Calendar.MONTH, 5)
-                        c.set(java.util.Calendar.DATE, 30)
-                    }
-                    in 7..9 -> {
-                        c.set(java.util.Calendar.MONTH, 8)
-                        c.set(java.util.Calendar.DATE, 30)
-                    }
-                    in 10..12 -> {
-                        c.set(java.util.Calendar.MONTH, 11)
-                        c.set(java.util.Calendar.DATE, 31)
-                    }
-                }
-                quarterEnd = longSdf.parse(shortSdf.format(c.time) + " 23:59:59")
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            return quarterEnd
-        }
 
 }
