@@ -33,7 +33,7 @@ str.substring(0, str.length -1)
 ```kotlin
 val str = "12345678"
 val newDate = Date(str)
-val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
 simpleDateFormat.format(newDate)
 ```
 ## 17. BigDecimal

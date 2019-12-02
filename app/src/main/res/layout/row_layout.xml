@@ -38,14 +38,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
-                android:hint="@string/et_default_text"
+                android:hint="@string/tv_default_text"
                 android:background="@null"
                 android:layout_marginEnd="@dimen/dp_30"
                 android:textColor="@color/color_333333"
                 android:textSize="@dimen/sp_15"
                 android:gravity="center"
                 android:visibility="gone"
+
         />
+
 
     </LinearLayout>
 

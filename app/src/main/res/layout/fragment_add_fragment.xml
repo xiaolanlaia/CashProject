@@ -1,70 +1,75 @@
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:background="@drawable/stroke_round_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/dp_15"
->
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
 
-    <com.w.xiaolanlaia.util.widget.RowLayout
-
-            android:id="@+id/project_num_row"
+        <variable name="vm" type="com.w.xiaolanlaia.add.AddViewModel"/>
+    </data>
+    <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/stroke_round_bg"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:row_layout_style="right_text"
-            app:left_text="@string/project_num_text"
-    />
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dp_15"
+    >
 
-    <include layout="@layout/add_time_row"/>
+        <com.w.xiaolanlaia.util.widget.RowLayout
 
+                android:id="@+id/project_num_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="right_text"
+                app:left_text="@string/project_num_text"
+        />
 
-
-    <com.w.xiaolanlaia.util.widget.RowLayout
-
-            android:id="@+id/local_row"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:row_layout_style="right_edit"
-            app:left_text="@string/location_text"
-    />
-
-    <com.w.xiaolanlaia.util.widget.RowLayout
-
-            android:id="@+id/type_row"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:row_layout_style="right_edit"
-            app:left_text="@string/type_text"
-    />
-
-    <com.w.xiaolanlaia.util.widget.RowLayout
-
-            android:id="@+id/sort_row"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:row_layout_style="right_edit"
-            app:left_text="@string/sort_text"
-    />
-
-    <com.w.xiaolanlaia.util.widget.RowLayout
-
-            android:id="@+id/subdivision_row"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:row_layout_style="right_edit"
-            app:left_text="@string/subdivision_text"
-    />
+        <include
+                android:id="@+id/time_row"
+                layout="@layout/add_time_row"/>
 
 
-    <com.w.xiaolanlaia.util.widget.RowLayout
+        <com.w.xiaolanlaia.util.widget.RowLayout
 
-            android:id="@+id/money_row"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:row_layout_style="right_edit"
-            app:left_text="@string/money_text"
-    />
+                android:id="@+id/local_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="right_text"
+                app:left_text="@string/location_text"
+        />
 
-</LinearLayout>
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
+                android:id="@+id/type_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="right_text"
+                app:left_text="@string/type_text"
+        />
+
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
+                android:id="@+id/sort_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="right_text"
+                app:left_text="@string/sort_text"
+        />
+
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
+                android:id="@+id/subdivision_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="right_edit"
+                app:left_text="@string/subdivision_text"
+        />
+
+
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
+                android:id="@+id/money_row"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="right_edit"
+                app:left_text="@string/money_text"
+        />
+
+    </LinearLayout>
+</layout>

@@ -8,7 +8,9 @@ import com.w.xiaolanlaia.R
 import com.w.xiaolanlaia.base.BaseMVVMFragment
 import com.w.xiaolanlaia.databinding.FragmentAddBinding
 import com.w.xiaolanlaia.util.widget.AppToolbar
+import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add_fragment.*
+import kotlinx.android.synthetic.main.fragment_add_fragment.view.*
 import kotlinx.android.synthetic.main.include_toolbar.view.*
 import kotlinx.android.synthetic.main.row_layout.view.*
 import java.util.*
@@ -39,7 +41,11 @@ class AddFragment : BaseMVVMFragment<FragmentAddBinding, AddViewModel>() {
 
 
         val mediaToolbar = activity!!.findViewById<AppToolbar>(R.id.mediator_toolbar)
-        mediaToolbar.save_tv.setOnClickListener(vm.saveOnClickListener)
+
+        mediaToolbar.save_tv.setOnClickListener(vm.addFragmentClick)
+        fragment_add.local_row.setOnClickListener(vm.addFragmentClick)
+        fragment_add.type_row.setOnClickListener(vm.addFragmentClick)
+        fragment_add.sort_row.setOnClickListener(vm.addFragmentClick)
 
 
         project_num_row.right_tv.text = SpannableStringBuilder(Date().time.toString())
@@ -47,15 +53,18 @@ class AddFragment : BaseMVVMFragment<FragmentAddBinding, AddViewModel>() {
         vm.sProjectNum.value = project_num_row.right_tv.text.toString()
 
 
-        local_row.right_et.addTextChangedListener(vm.localTextChangeListener)
+        vm.setTimeRow(project_num_row.right_tv.text.toString(),time_row)
 
-        sort_row.right_et.addTextChangedListener(vm.sortTextChangeListener)
 
         subdivision_row.right_et.addTextChangedListener(vm.subdivisionTextChangeListener)
 
-        type_row.right_et.addTextChangedListener(vm.typeTextChangeListener)
-
         money_row.right_et.addTextChangedListener(vm.moneyTextChangeListener)
+
+        vm.sLocation.observe(this,androidx.lifecycle.Observer {
+
+            local_row.right_tv.text = it
+
+        })
 
 
 

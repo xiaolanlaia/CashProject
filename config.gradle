@@ -33,6 +33,7 @@ ext{
             "room-guava"             :"android.arch.persistence.room:guava:1.1.1",
 
             "gson"                   :'com.google.code.gson:gson:2.8.5',
+            "citypicker"             :'com.zaaach:citypicker:2.0.1',
 
 
     ]
