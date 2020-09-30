@@ -3,6 +3,7 @@ package com.w.xiaolanlaia.common
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.w.xiaolanlaia.util.widget.wheel.PickCityUtil
 import kotlin.properties.Delegates
 
 /**
@@ -33,6 +34,9 @@ companion object{
         context = this.applicationContext
 
         instance = this
+
+        //  handleSSLHandshake();
+        PickCityUtil.initPickView(context)
 
 
     }

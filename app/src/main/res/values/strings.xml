@@ -21,4 +21,6 @@
     <string name="type_text">类型</string>
     <string name="project_num_text">编号</string>
     <string name="add_text">添加</string>
+    <string name="cancel">取消</string>
+    <string name="next">下一步</string>
 </resources>

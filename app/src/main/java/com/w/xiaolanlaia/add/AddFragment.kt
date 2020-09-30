@@ -43,6 +43,7 @@ class AddFragment : BaseMVVMFragment<FragmentAddBinding, AddViewModel>() {
         val mediaToolbar = activity!!.findViewById<AppToolbar>(R.id.mediator_toolbar)
 
         mediaToolbar.save_tv.setOnClickListener(vm.addFragmentClick)
+        fragment_add.time_row.setOnClickListener(vm.addFragmentClick)
         fragment_add.local_row.setOnClickListener(vm.addFragmentClick)
         fragment_add.type_row.setOnClickListener(vm.addFragmentClick)
         fragment_add.sort_row.setOnClickListener(vm.addFragmentClick)
@@ -53,7 +54,7 @@ class AddFragment : BaseMVVMFragment<FragmentAddBinding, AddViewModel>() {
         vm.sProjectNum.value = project_num_row.right_tv.text.toString()
 
 
-        vm.setTimeRow(project_num_row.right_tv.text.toString(),time_row)
+//        vm.setTimeRow(project_num_row.right_tv.text.toString(),time_row)
 
 
         subdivision_row.right_et.addTextChangedListener(vm.subdivisionTextChangeListener)
@@ -63,6 +64,11 @@ class AddFragment : BaseMVVMFragment<FragmentAddBinding, AddViewModel>() {
         vm.sLocation.observe(this,androidx.lifecycle.Observer {
 
             local_row.right_tv.text = it
+
+        })
+        vm.sTime.observe(this,androidx.lifecycle.Observer {
+
+            time_row.right_tv.text = it
 
         })
 

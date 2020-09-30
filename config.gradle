@@ -34,6 +34,7 @@ ext{
 
             "gson"                   :'com.google.code.gson:gson:2.8.5',
             "citypicker"             :'com.zaaach:citypicker:2.0.1',
+            "Android-PickerView"     :'com.contrarywind:Android-PickerView:3.2.4',
 
 
     ]

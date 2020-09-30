@@ -20,6 +20,7 @@ import com.w.xiaolanlaia.database.AppDataBase
 import com.w.xiaolanlaia.database.projectDB.ProjectEntity
 import com.w.xiaolanlaia.util.CodeUtil.toast
 import com.w.xiaolanlaia.util.SimpleTextWatch
+import com.w.xiaolanlaia.util.widget.wheel.PickCityUtil
 import com.zaaach.citypicker.CityPicker
 import com.zaaach.citypicker.adapter.OnPickListener
 import com.zaaach.citypicker.model.City
@@ -58,6 +59,28 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
     var sMoney      = MutableLiveData<String>()
 
     val usageArray = arrayOf("收入","支出")
+    val expendType = arrayOf(
+        "1，餐费及食品",
+        "2，交通",
+        "3，水果",
+        "4，非酒精饮料",
+        "5，零食",
+        "6，手机充值",
+        "7，居家用品",
+        "8，医疗保健",
+        "9，保险",
+        "10，燃气水电费",
+        "11，文化",
+        "12，服装鞋帽",
+        "13，房租",
+        "14，娱乐",
+        "15，电子产品及相关",
+        "16，家装、家庭设备及维修",
+        "17，金融及相关",
+        "18，酒精饮料"
+    )
+
+
 
 
     val addFragmentClick = View.OnClickListener {
@@ -90,9 +113,19 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
                 toast("保存成功")
             }
 
+            R.id.time_row ->{
+                PickCityUtil.showTimePickView(it.context) { s ->
+                    sTime.value = s
+                }
+            }
+
             R.id.local_row -> {
 
-                setLocation(it.context)
+//                setLocation(it.context)
+
+                PickCityUtil.showCityPickView(it.context) { s ->
+                    sLocation.value = s
+                }
             }
 
             R.id.type_row -> {
@@ -106,7 +139,7 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
 
 
             R.id.sort_row -> {
-                showPicker(it,"请选择借款期数",usageArray,2)
+                showPicker(it,"请选择借款期数",expendType,2)
             }
 
         }
@@ -145,7 +178,7 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
             .setOnPickListener(object : OnPickListener {
                 override fun onPick(position: Int, data: City) {
 
-                    sLocation.value = data.province + data.name
+//                    sLocation.value = data.province + data.name
 
                 }
 

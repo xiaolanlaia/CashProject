@@ -20,9 +20,14 @@
                 app:left_text="@string/project_num_text"
         />
 
-        <include
+        <com.w.xiaolanlaia.util.widget.RowLayout
+
                 android:id="@+id/time_row"
-                layout="@layout/add_time_row"/>
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:row_layout_style="right_text"
+                app:left_text="@string/time_text"
+                />
 
 
         <com.w.xiaolanlaia.util.widget.RowLayout

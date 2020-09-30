@@ -182,6 +182,7 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
 
     implementation rootProject.ext.dependencies["citypicker"]
+    implementation rootProject.ext.dependencies["Android-PickerView"]
 
 
 
