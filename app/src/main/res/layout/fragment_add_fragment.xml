@@ -32,15 +32,6 @@
 
         <com.w.xiaolanlaia.util.widget.RowLayout
 
-                android:id="@+id/local_row"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:row_layout_style="right_text"
-                app:left_text="@string/location_text"
-        />
-
-        <com.w.xiaolanlaia.util.widget.RowLayout
-
                 android:id="@+id/type_row"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"

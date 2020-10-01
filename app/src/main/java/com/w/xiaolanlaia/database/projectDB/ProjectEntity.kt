@@ -25,9 +25,6 @@ data class ProjectEntity(
     @ColumnInfo(name = "projectTime")
     var projectTime: String?,
 
-    @ColumnInfo(name = "projectLocation")
-    var projectLocation: String?,
-
     @ColumnInfo(name = "project")
     var project: String?,
 

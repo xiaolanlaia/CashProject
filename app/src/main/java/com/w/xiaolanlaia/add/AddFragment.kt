@@ -44,7 +44,6 @@ class AddFragment : BaseMVVMFragment<FragmentAddBinding, AddViewModel>() {
 
         mediaToolbar.save_tv.setOnClickListener(vm.addFragmentClick)
         fragment_add.time_row.setOnClickListener(vm.addFragmentClick)
-        fragment_add.local_row.setOnClickListener(vm.addFragmentClick)
         fragment_add.type_row.setOnClickListener(vm.addFragmentClick)
         fragment_add.sort_row.setOnClickListener(vm.addFragmentClick)
 
@@ -61,11 +60,6 @@ class AddFragment : BaseMVVMFragment<FragmentAddBinding, AddViewModel>() {
 
         money_row.right_et.addTextChangedListener(vm.moneyTextChangeListener)
 
-        vm.sLocation.observe(this,androidx.lifecycle.Observer {
-
-            local_row.right_tv.text = it
-
-        })
         vm.sTime.observe(this,androidx.lifecycle.Observer {
 
             time_row.right_tv.text = it

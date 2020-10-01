@@ -52,7 +52,6 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
 
     var sProjectNum = MutableLiveData<String>()
     var sTime       = MutableLiveData<String>()
-    var sLocation   = MutableLiveData<String>()
     var sType       = MutableLiveData<String>()
     var sSort       = MutableLiveData<String>()
     var sConcrete   = MutableLiveData<String>()
@@ -99,7 +98,6 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
                         sDao.getAllProjects().size + 1,
                         sProjectNum.value,
                         sTime.value,
-                        sLocation.value,
                         sSort.value,
                         sType.value,
                         sMoney.value
@@ -119,14 +117,6 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
                 }
             }
 
-            R.id.local_row -> {
-
-//                setLocation(it.context)
-
-                PickCityUtil.showCityPickView(it.context) { s ->
-                    sLocation.value = s
-                }
-            }
 
             R.id.type_row -> {
 
@@ -255,7 +245,6 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
 
         Log.d("__value-sProjectNum","${sProjectNum.value}")
         Log.d("__value-sTime","${sTime.value}")
-        Log.d("__value-sLocation","${sLocation.value}")
         Log.d("__value-sType","${sType.value}")
         Log.d("__value-sSort","${sSort.value}")
         Log.d("__value-sConcrete","${sConcrete.value}")
@@ -265,7 +254,6 @@ class AddViewModel (val repository: AddRepository) : ViewModel() {
         if (
             TextUtils.isEmpty(sProjectNum.value) ||
             TextUtils.isEmpty(sTime.value)       ||
-            TextUtils.isEmpty(sLocation.value)   ||
             TextUtils.isEmpty(sType.value)       ||
             TextUtils.isEmpty(sSort.value)       ||
             TextUtils.isEmpty(sConcrete.value)   ||
